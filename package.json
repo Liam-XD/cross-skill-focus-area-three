@@ -1,0 +1,21 @@
+{
+  "name": "playwright-tests",
+  "version": "1.0.0",
+  "description": "End-to-end testing project using Playwright and TypeScript.",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:cucumber": "cucumber-js --require-module ts-node/register --require features/steps/**/*.ts features",
+    "test:all": "npm test && npm run test:cucumber"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.5.0",
+    "@playwright/test": "^1.43.0",
+    "playwright-cucumber-steps": "^0.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

@@ -1,0 +1,16 @@
+// This file is required for TypeScript support in Playwright tests.
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "tests/**/*.ts",
+    "features/steps/**/*.ts"
+  ]
+}
