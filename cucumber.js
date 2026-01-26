@@ -2,7 +2,7 @@
 
 module.exports = {
   default: {
-    require: ['features/steps/**/*.ts'],
+  require: ['features/steps/**/*.ts', 'features/support/**/*.ts'],
     requireModule: ['ts-node/register'],
     format: ['progress', 'html:cucumber-report.html'],
     formatOptions: { snippetInterface: 'async-await' }
