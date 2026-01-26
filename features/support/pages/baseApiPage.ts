@@ -1,3 +1,5 @@
+// This is the base class for Trello API Page Objects
+
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { TrelloAuth } from '../trelloClient';
 

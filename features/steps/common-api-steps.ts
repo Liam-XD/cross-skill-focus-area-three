@@ -1,3 +1,5 @@
+// This file contains common Cucumber step definitions for API response validations.
+
 import { Then } from '@cucumber/cucumber';
 
 Then('the API should return a success status', async function () {

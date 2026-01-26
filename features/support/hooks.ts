@@ -1,3 +1,5 @@
+// This file contains Cucumber hooks to manage Trello boards and cards for test scenarios.
+
 import { AfterAll, After, Before } from '@cucumber/cucumber';
 import { request } from '@playwright/test';
 import 'dotenv/config';
@@ -18,7 +20,7 @@ Before({ tags: '@board' }, async function () {
     const boardId = await boardPage.extractBoardId(response);
     const json = await response.json();
     const boardName = json.name;
-    // Expose values via the Cucumber World
+    // Expose values via Cucumber World
     this.boardId = boardId;
     this.boardName = boardName;
 });
@@ -37,10 +39,11 @@ Before({ tags: '@card' }, async function () {
     this.boardId = boardId;
     this.boardName = boardName;
     this.listId = lists[0]; // Use the first list for card operations
+
     // Create a card on the first list so scenarios have a valid card ID available
     // Use TrelloCardPage for card creation
     const { TrelloCardPage } = require('./pages/cardPage');
-    const cardPage = TrelloCardPage.fromContext(this.apiRequestContext);
+    const cardPage = TrelloCardPage.fromContext(this.apiRequestContext); // Reuse existing context
     const cardResponse = await cardPage.createCard(this.listId, 'New_Card');
     const cardJson = await cardResponse.json();
     if (!cardJson.id) {
@@ -50,10 +53,11 @@ Before({ tags: '@card' }, async function () {
 });
 
 After({ tags: '@board or @card' }, async function () {
+    // Dispose of the shared APIRequestContext after tagged scenarios
     await this.apiRequestContext?.dispose();
 });
 
 AfterAll({ timeout: 10000 }, async function () {
-    // Clean up created boards after all tests have run using the Trello client helper
+    // Clean up created boards after all tests have run
     await deleteAllBoards();
 });

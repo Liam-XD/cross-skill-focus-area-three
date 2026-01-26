@@ -1,4 +1,4 @@
-Feature: Trello cards API Endpoint
+Feature: Trello Cards API Endpoint
 
   @card
   Scenario: Create a new card via API

@@ -1,19 +1,22 @@
+// This file contains Cucumber step definitions for Trello board actions.
+
 import { Given, When, Then } from '@cucumber/cucumber';
 import 'dotenv/config';
 import { TrelloBoardPage } from '../support/pages/boardPage';
 
+
+// Helper to get or create TrelloBoardPage instance
 async function getTrelloBoardPage(world: any): Promise<TrelloBoardPage> {
     if (!world.apiRequestContext) {
         throw new Error('APIRequestContext is not initialised on World. Ensure the Before hook creates it.');
     }
-
     if (!world.trelloBoardPage) {
         world.trelloBoardPage = TrelloBoardPage.fromContext(world.apiRequestContext);
     }
-
     return world.trelloBoardPage;
 }
 
+// --- Setup & Board Creation ---
 Given('I am authenticated with the Trello API', async function () {
     await getTrelloBoardPage(this);
 });
@@ -34,6 +37,7 @@ Given('I have a valid board ID', async function () {
     }
 });
 
+// --- Board Update & Retrieval ---
 When('I send a request to update the board\'s name', async function () {
     const newBoardName = "Updated Board Name";
     const boardPage = await getTrelloBoardPage(this);
@@ -55,6 +59,7 @@ Then('the response should reflect the updated board name', async function () {
     await boardPage.assertBoardName(this.response, "Updated Board Name");
 });
 
+// --- Board Deletion ---
 When('I send a request to delete the board', async function () {
     const boardPage = await getTrelloBoardPage(this);
     this.response = await boardPage.deleteBoard(this.boardId);

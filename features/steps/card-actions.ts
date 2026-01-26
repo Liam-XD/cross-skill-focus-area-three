@@ -1,19 +1,21 @@
+// This file contains Cucumber step definitions for Trello card actions.
+
 import { Given, When, Then } from '@cucumber/cucumber';
 import 'dotenv/config';
 import { TrelloCardPage } from '../support/pages/cardPage';
 
+// Helper to get or create TrelloCardPage instance
 async function getTrelloCardPage(world: any): Promise<TrelloCardPage> {
     if (!world.apiRequestContext) {
         throw new Error('APIRequestContext is not initialised on World. Ensure the Before hook creates it.');
     }
-
     if (!world.trelloCardPage) {
         world.trelloCardPage = TrelloCardPage.fromContext(world.apiRequestContext);
     }
-
     return world.trelloCardPage;
 }
 
+// --- Create Card & Assert ID ---
 When('I send a request to create a card', async function () {
     const cardPage = await getTrelloCardPage(this);
     this.response = await cardPage.createCard(this.listId);
@@ -25,11 +27,13 @@ Then('the response should contain a valid card ID', async function () {
     this.cardId = cardId;
 });
 
+// --- Validate Card ID ---
 Given('I have a valid card ID', async function () {
     const cardPage = await getTrelloCardPage(this);
     cardPage.ensureValidCardId(this.cardId);
 });
 
+// --- Retrieve Card & Assert Info ---
 When('I send a request to retrieve the card details', async function () {
     const cardPage = await getTrelloCardPage(this);
     this.response = await cardPage.getCard(this.cardId);
@@ -40,18 +44,19 @@ Then('the response should contain the correct card information', async function 
     await cardPage.assertCardId(this.response, this.cardId);
 });
 
+// --- Update Card & Assert Name ---
 When('I send a request to update the card\'s name', async function () {
     const cardPage = await getTrelloCardPage(this);
     const newCardName = "Updated Card Name";
     this.response = await cardPage.updateCardName(this.cardId, newCardName, this.listId, "Updated description");
 });
 
-
 Then('the response should reflect the updated card name', async function () {
     const cardPage = await getTrelloCardPage(this);
     await cardPage.assertCardName(this.response, "Updated Card Name");
 });
 
+// --- Delete Card & Assert Deleted ---
 When('I send a request to delete the card', async function () {
     const cardPage = await getTrelloCardPage(this);
     this.response = await cardPage.deleteCard(this.cardId);

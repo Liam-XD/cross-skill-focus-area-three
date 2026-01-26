@@ -1,13 +1,17 @@
+// This is the Trello Board API Page Object. It structures API interactions related to Trello boards.
+
 import { APIRequestContext, APIResponse, request } from '@playwright/test';
 import 'dotenv/config';
 import { TrelloAuth, getTrelloAuth, getBaseUrl } from '../trelloClient';
 import { TrelloApiPage } from './baseApiPage';
 
+// TrelloBoardPage class to manage Trello board operations via API
 export class TrelloBoardPage extends TrelloApiPage {
     private constructor(apiRequestContext: APIRequestContext, trelloAuth: TrelloAuth) {
         super(apiRequestContext, trelloAuth);
     }
 
+    // Factory method to create an instance of TrelloBoardPage. Builds context + auth.
     static async create(): Promise<TrelloBoardPage> {
         const trelloAuth = getTrelloAuth();
         const baseURL = getBaseUrl();
@@ -19,6 +23,7 @@ export class TrelloBoardPage extends TrelloApiPage {
         return new TrelloBoardPage(apiRequestContext, trelloAuth);
     }
 
+    // Method to create an instance from an existing APIRequestContext. Uses existing context + builds auth.
     static fromContext(apiRequestContext: APIRequestContext): TrelloBoardPage {
         const trelloAuth = getTrelloAuth();
         return new TrelloBoardPage(apiRequestContext, trelloAuth);
