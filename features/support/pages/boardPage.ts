@@ -27,7 +27,9 @@ export class TrelloBoardPage extends TrelloApiPage {
     async createBoard(boardName?: string): Promise<APIResponse> {
         const name = boardName ?? 'Board_' + Math.random().toString(36).substring(2, 8);
         const postUrl = this.buildUrl('boards/', { name });
-        return this.apiRequestContext.post(postUrl);
+        const response = await this.apiRequestContext.post(postUrl);
+        await this.assertSuccess(response, 200);
+        return response;
     }
 
     async extractBoardId(response: APIResponse): Promise<string> {
@@ -50,17 +52,19 @@ export class TrelloBoardPage extends TrelloApiPage {
     async assertBoardName(response: APIResponse, expectedName: string): Promise<void> {
         const jsonData = await response.json();
         if (jsonData.name !== expectedName) {
-            throw new Error(`Expected board name ${expectedName} but got ${jsonData.name}`);
+            throw new Error(`Expected board name ${expectedName} but got ${jsonData.name}\nResponse id: ${jsonData.id}\nShort URL: ${jsonData.shortUrl}`);
         }
     }
 
     async updateBoardName(boardId: string, newBoardName: string): Promise<APIResponse> {
         const putUrl = this.buildUrl(`boards/${boardId}`);
-        return this.apiRequestContext.put(putUrl, {
+        const response = await this.apiRequestContext.put(putUrl, {
             form: {
                 name: newBoardName,
             },
         });
+        await this.assertSuccess(response, 200);
+        return response;
     }
 
     async deleteBoard(boardId: string): Promise<APIResponse> {

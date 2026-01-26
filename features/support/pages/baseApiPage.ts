@@ -10,9 +10,15 @@ export abstract class TrelloApiPage {
         this.trelloAuth = trelloAuth;
     }
 
-    assertSuccess(response: APIResponse, expectedStatus: number = 200): void {
+    async assertSuccess(response: APIResponse, expectedStatus: number = 200): Promise<void> {
         if (response.status() !== expectedStatus) {
-            throw new Error(`Expected ${expectedStatus} success status but got ${response.status()}`);
+            let bodyText = '';
+            try {
+                bodyText = await response.text();
+            } catch (error) {
+                bodyText = '[unavailable]';
+            }
+            throw new Error(`Expected ${expectedStatus} success status but got ${response.status()}\nResponse body: ${bodyText}`);
         }
     }
 

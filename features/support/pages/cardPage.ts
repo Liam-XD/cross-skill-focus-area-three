@@ -27,16 +27,18 @@ export class TrelloCardPage extends TrelloApiPage {
     async createCard(listId: string, cardName?: string): Promise<APIResponse> {
         const name = cardName ?? 'Card_' + Math.random().toString(36).substring(2, 8);
         const postUrl = this.buildUrl('cards');
-        return this.apiRequestContext.post(postUrl, {
+        const response = await this.apiRequestContext.post(postUrl, {
             form: {
                 idList: listId,
                 name,
             },
         });
+        await this.assertSuccess(response, 200);
+        return response;
     }
 
     ensureValidCardId(cardId: string): void {
-        if (!cardId) {
+        if (!cardId || cardId.length === 0) {
             throw new Error('Card ID is invalid or missing. Ensure a card has been created before performing this operation.');
         }
     }
@@ -60,27 +62,29 @@ export class TrelloCardPage extends TrelloApiPage {
     async assertCardName(response: APIResponse, expectedName: string): Promise<void> {
         const jsonData = await response.json();
         if (jsonData.name !== expectedName) {
-            throw new Error(`Expected card name "${expectedName}" but got ${jsonData.name}`);
+            throw new Error(`Expected card name "${expectedName}" but got ${jsonData.name}\nResponse id: ${jsonData.id}`);
         }
     }
 
     async assertCardId(response: APIResponse, expectedCardId: string): Promise<void> {
         const jsonData = await response.json();
         if (jsonData.id !== expectedCardId) {
-            throw new Error(`Expected card ID ${expectedCardId} but got ${jsonData.id}`);
+            throw new Error(`Expected card ID ${expectedCardId} but got ${jsonData.id}\nResponse name: ${jsonData.name}`);
         }
     }
 
     async updateCardName(cardId: string, newCardName: string, listId: string, description: string = 'Updated description'): Promise<APIResponse> {
         this.ensureValidCardId(cardId);
         const putUrl = this.buildUrl(`cards/${cardId}`);
-        return this.apiRequestContext.put(putUrl, {
+        const response = await this.apiRequestContext.put(putUrl, {
             form: {
                 idList: listId,
                 name: newCardName,
                 desc: description,
             },
         });
+        await this.assertSuccess(response, 200);
+        return response;
     }
 
     async deleteCard(cardId: string): Promise<APIResponse> {
