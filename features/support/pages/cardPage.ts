@@ -53,12 +53,7 @@ export class TrelloCardPage extends TrelloApiPage {
 
     async getCard(cardId: string): Promise<APIResponse> {
         this.ensureValidCardId(cardId);
-        const params = {
-            key: this.trelloAuth.key,
-            token: this.trelloAuth.token,
-        };
-
-        const getUrl = `cards/${cardId}?${new URLSearchParams(params).toString()}`;
+        const getUrl = this.buildUrl(`cards/${cardId}`);
         return this.apiRequestContext.get(getUrl);
     }
 
@@ -78,12 +73,7 @@ export class TrelloCardPage extends TrelloApiPage {
 
     async updateCardName(cardId: string, newCardName: string, listId: string, description: string = 'Updated description'): Promise<APIResponse> {
         this.ensureValidCardId(cardId);
-        const params = {
-            key: this.trelloAuth.key,
-            token: this.trelloAuth.token,
-        };
-
-        const putUrl = `cards/${cardId}?${new URLSearchParams(params).toString()}`;
+        const putUrl = this.buildUrl(`cards/${cardId}`);
         return this.apiRequestContext.put(putUrl, {
             form: {
                 idList: listId,
@@ -95,12 +85,8 @@ export class TrelloCardPage extends TrelloApiPage {
 
     async deleteCard(cardId: string): Promise<APIResponse> {
         this.ensureValidCardId(cardId);
-        const params = {
-            key: this.trelloAuth.key,
-            token: this.trelloAuth.token,
-        };
 
-        const deleteUrl = `cards/${cardId}?${new URLSearchParams(params).toString()}`;
+        const deleteUrl = this.buildUrl(`cards/${cardId}`);
         return this.apiRequestContext.delete(deleteUrl);
     }
 
