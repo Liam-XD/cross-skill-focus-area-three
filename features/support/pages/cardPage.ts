@@ -1,51 +1,37 @@
 import { APIRequestContext, APIResponse, request } from '@playwright/test';
 import 'dotenv/config';
+import { TrelloAuth, getTrelloAuth, getBaseUrl } from '../trelloClient';
+import { TrelloApiPage } from './baseApiPage';
 
-interface TrelloAuth {
-    key: string;
-    token: string;
-}
-
-export class TrelloCardPage {
-    private apiRequestContext: APIRequestContext;
-    private trelloAuth: TrelloAuth;
-
+export class TrelloCardPage extends TrelloApiPage {
     private constructor(apiRequestContext: APIRequestContext, trelloAuth: TrelloAuth) {
-        this.apiRequestContext = apiRequestContext;
-        this.trelloAuth = trelloAuth;
+        super(apiRequestContext, trelloAuth);
     }
 
     static async create(): Promise<TrelloCardPage> {
-        const key = process.env.TRELLO_API_KEY;
-        const token = process.env.TRELLO_API_TOKEN;
-        const baseURL = process.env.TRELLO_API_BASE_URL;
-
-        if (!key || !token) {
-            throw new Error('Trello API credentials (TRELLO_API_KEY/TRELLO_API_TOKEN) are missing');
-        }
-
-        if (!baseURL) {
-            throw new Error('Trello API base URL (TRELLO_API_BASE_URL) is missing');
-        }
+        const trelloAuth = getTrelloAuth();
+        const baseURL = getBaseUrl();
 
         const apiRequestContext = await request.newContext({
             baseURL,
         });
 
-        return new TrelloCardPage(apiRequestContext, { key, token });
+        return new TrelloCardPage(apiRequestContext, trelloAuth);
+    }
+
+    static fromContext(apiRequestContext: APIRequestContext): TrelloCardPage {
+        const trelloAuth = getTrelloAuth();
+        return new TrelloCardPage(apiRequestContext, trelloAuth);
     }
 
     async createCard(listId: string, cardName?: string): Promise<APIResponse> {
         const name = cardName ?? 'Card_' + Math.random().toString(36).substring(2, 8);
-        const params = {
-            idList: listId,
-            name,
-            key: this.trelloAuth.key,
-            token: this.trelloAuth.token,
-        };
-        const postUrl = `cards`;
+        const postUrl = this.buildUrl('cards');
         return this.apiRequestContext.post(postUrl, {
-            form: params,
+            form: {
+                idList: listId,
+                name,
+            },
         });
     }
 

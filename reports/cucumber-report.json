@@ -6,70 +6,99 @@
         "description": "",
         "id": "trello-board-api-endpoint;create-a-new-board-via-api",
         "keyword": "Scenario",
-        "line": 3,
+        "line": 4,
         "name": "Create a new board via API",
         "steps": [
           {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25578958
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 467927541
+            }
+          },
+          {
             "arguments": [],
             "keyword": "Given ",
-            "line": 4,
+            "line": 5,
             "name": "I am authenticated with the Trello API",
             "match": {
-              "location": "features/steps/board-actions.ts:15"
+              "location": "features/steps/board-actions.ts:17"
             },
             "result": {
               "status": "passed",
-              "duration": 31102540
+              "duration": 354790
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 5,
+            "line": 6,
             "name": "I send a request to create a board",
             "match": {
-              "location": "features/steps/board-actions.ts:19"
+              "location": "features/steps/board-actions.ts:21"
             },
             "result": {
               "status": "passed",
-              "duration": 502500792
+              "duration": 422161707
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 6,
+            "line": 7,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 373792
+              "duration": 481667
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 7,
+            "line": 8,
             "name": "the response should contain a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:32"
+              "location": "features/steps/board-actions.ts:26"
             },
             "result": {
               "status": "passed",
-              "duration": 1876250
+              "duration": 1373416
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1990749
             }
           }
         ],
-        "tags": [],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 3
+          }
+        ],
         "type": "scenario"
       },
       {
         "description": "",
         "id": "trello-board-api-endpoint;retrieve-a-board-by-boardid",
         "keyword": "Scenario",
-        "line": 10,
+        "line": 11,
         "name": "Retrieve a board by boardID",
         "steps": [
           {
@@ -77,66 +106,82 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 380387457
+              "duration": 1508582
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 434027000
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 11,
+            "line": 12,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:37"
+              "location": "features/steps/board-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 413375
+              "duration": 407791
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 12,
+            "line": 13,
             "name": "I send a request to retrieve the board details",
             "match": {
-              "location": "features/steps/board-actions.ts:49"
+              "location": "features/steps/board-actions.ts:43"
             },
             "result": {
               "status": "passed",
-              "duration": 166704834
+              "duration": 158169625
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 13,
+            "line": 14,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 252958
+              "duration": 228958
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 14,
+            "line": 15,
             "name": "the response should contain the correct board information",
             "match": {
-              "location": "features/steps/board-actions.ts:54"
+              "location": "features/steps/board-actions.ts:48"
             },
             "result": {
               "status": "passed",
-              "duration": 1011124
+              "duration": 1696875
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1135583
             }
           }
         ],
         "tags": [
           {
             "name": "@board",
-            "line": 9
+            "line": 10
           }
         ],
         "type": "scenario"
@@ -145,7 +190,7 @@
         "description": "",
         "id": "trello-board-api-endpoint;update-a-board's-name-via-api",
         "keyword": "Scenario",
-        "line": 17,
+        "line": 18,
         "name": "Update a board's name via API",
         "steps": [
           {
@@ -153,66 +198,82 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 368872875
+              "duration": 1320957
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 390773083
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 18,
+            "line": 19,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:37"
+              "location": "features/steps/board-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 395708
+              "duration": 152250
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 19,
+            "line": 20,
             "name": "I send a request to update the board's name",
             "match": {
-              "location": "features/steps/board-actions.ts:43"
+              "location": "features/steps/board-actions.ts:37"
             },
             "result": {
               "status": "passed",
-              "duration": 226612709
+              "duration": 238860957
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 20,
+            "line": 21,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 391415
+              "duration": 437291
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 21,
+            "line": 22,
             "name": "the response should reflect the updated board name",
             "match": {
-              "location": "features/steps/board-actions.ts:59"
+              "location": "features/steps/board-actions.ts:53"
             },
             "result": {
               "status": "passed",
-              "duration": 1954959
+              "duration": 1896666
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1563042
             }
           }
         ],
         "tags": [
           {
             "name": "@board",
-            "line": 16
+            "line": 17
           }
         ],
         "type": "scenario"
@@ -221,7 +282,7 @@
         "description": "",
         "id": "trello-board-api-endpoint;delete-a-board-via-api",
         "keyword": "Scenario",
-        "line": 24,
+        "line": 25,
         "name": "Delete a board via API",
         "steps": [
           {
@@ -229,66 +290,82 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 370611667
+              "duration": 1526208
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 379556708
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 25,
+            "line": 26,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:37"
+              "location": "features/steps/board-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 172750
+              "duration": 208125
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 26,
+            "line": 27,
             "name": "I send a request to delete the board",
             "match": {
-              "location": "features/steps/board-actions.ts:64"
+              "location": "features/steps/board-actions.ts:58"
             },
             "result": {
               "status": "passed",
-              "duration": 499232417
+              "duration": 630659125
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 27,
+            "line": 28,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 68832
+              "duration": 265124
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 28,
+            "line": 29,
             "name": "the board should no longer exist when I attempt to retrieve it",
             "match": {
-              "location": "features/steps/board-actions.ts:69"
+              "location": "features/steps/board-actions.ts:63"
             },
             "result": {
               "status": "passed",
-              "duration": 148361667
+              "duration": 151317583
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1666166
             }
           }
         ],
         "tags": [
           {
             "name": "@board",
-            "line": 23
+            "line": 24
           }
         ],
         "type": "scenario"
@@ -316,7 +393,15 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 908285250
+              "duration": 998292
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1011677125
             }
           },
           {
@@ -325,11 +410,11 @@
             "line": 5,
             "name": "I am authenticated with the Trello API",
             "match": {
-              "location": "features/steps/board-actions.ts:15"
+              "location": "features/steps/board-actions.ts:17"
             },
             "result": {
               "status": "passed",
-              "duration": 1829625
+              "duration": 246709
             }
           },
           {
@@ -338,11 +423,11 @@
             "line": 6,
             "name": "I send a request to create a card",
             "match": {
-              "location": "features/steps/card-actions.ts:14"
+              "location": "features/steps/card-actions.ts:17"
             },
             "result": {
               "status": "passed",
-              "duration": 330751917
+              "duration": 436109082
             }
           },
           {
@@ -351,11 +436,11 @@
             "line": 7,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 447959
+              "duration": 146582
             }
           },
           {
@@ -364,11 +449,19 @@
             "line": 8,
             "name": "the response should contain a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:20"
+              "location": "features/steps/card-actions.ts:22"
             },
             "result": {
               "status": "passed",
-              "duration": 2651917
+              "duration": 1125500
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 573666
             }
           }
         ],
@@ -392,7 +485,15 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 826557208
+              "duration": 675291
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1003788875
             }
           },
           {
@@ -401,11 +502,11 @@
             "line": 12,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:26"
+              "location": "features/steps/card-actions.ts:28"
             },
             "result": {
               "status": "passed",
-              "duration": 343417
+              "duration": 412041
             }
           },
           {
@@ -414,11 +515,11 @@
             "line": 13,
             "name": "I send a request to retrieve the card details",
             "match": {
-              "location": "features/steps/card-actions.ts:31"
+              "location": "features/steps/card-actions.ts:33"
             },
             "result": {
               "status": "passed",
-              "duration": 178855333
+              "duration": 165572375
             }
           },
           {
@@ -427,11 +528,11 @@
             "line": 14,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 286541
+              "duration": 233333
             }
           },
           {
@@ -440,11 +541,19 @@
             "line": 15,
             "name": "the response should contain the correct card information",
             "match": {
-              "location": "features/steps/card-actions.ts:36"
+              "location": "features/steps/card-actions.ts:38"
             },
             "result": {
               "status": "passed",
-              "duration": 2250415
+              "duration": 1455458
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1180416
             }
           }
         ],
@@ -468,7 +577,15 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 843156500
+              "duration": 1296624
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 947121291
             }
           },
           {
@@ -477,11 +594,11 @@
             "line": 19,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:26"
+              "location": "features/steps/card-actions.ts:28"
             },
             "result": {
               "status": "passed",
-              "duration": 311749
+              "duration": 215041
             }
           },
           {
@@ -490,11 +607,11 @@
             "line": 20,
             "name": "I send a request to update the card's name",
             "match": {
-              "location": "features/steps/card-actions.ts:41"
+              "location": "features/steps/card-actions.ts:43"
             },
             "result": {
               "status": "passed",
-              "duration": 306869708
+              "duration": 403557415
             }
           },
           {
@@ -503,11 +620,11 @@
             "line": 21,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 189542
+              "duration": 258374
             }
           },
           {
@@ -516,11 +633,19 @@
             "line": 22,
             "name": "the response should reflect the updated card name",
             "match": {
-              "location": "features/steps/card-actions.ts:48"
+              "location": "features/steps/card-actions.ts:50"
             },
             "result": {
               "status": "passed",
-              "duration": 1295165
+              "duration": 1627458
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 934083
             }
           }
         ],
@@ -544,7 +669,15 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 945599125
+              "duration": 996375
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1116241500
             }
           },
           {
@@ -553,11 +686,11 @@
             "line": 26,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:26"
+              "location": "features/steps/card-actions.ts:28"
             },
             "result": {
               "status": "passed",
-              "duration": 174917
+              "duration": 127375
             }
           },
           {
@@ -566,11 +699,11 @@
             "line": 27,
             "name": "I send a request to delete the card",
             "match": {
-              "location": "features/steps/card-actions.ts:53"
+              "location": "features/steps/card-actions.ts:55"
             },
             "result": {
               "status": "passed",
-              "duration": 296587499
+              "duration": 291551707
             }
           },
           {
@@ -579,11 +712,11 @@
             "line": 28,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/board-actions.ts:24"
+              "location": "features/steps/common-api-steps.ts:3"
             },
             "result": {
               "status": "passed",
-              "duration": 478708
+              "duration": 318124
             }
           },
           {
@@ -592,11 +725,19 @@
             "line": 29,
             "name": "the card should no longer exist when I attempt to retrieve it",
             "match": {
-              "location": "features/steps/card-actions.ts:58"
+              "location": "features/steps/card-actions.ts:60"
             },
             "result": {
               "status": "passed",
-              "duration": 160949458
+              "duration": 153768250
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4572916
             }
           }
         ],

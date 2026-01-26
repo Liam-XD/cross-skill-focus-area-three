@@ -1,11 +1,11 @@
 import { APIResponse, request } from '@playwright/test';
 
-interface TrelloAuth {
+export interface TrelloAuth {
     key: string;
     token: string;
 }
 
-function getTrelloAuth(): TrelloAuth {
+export function getTrelloAuth(): TrelloAuth {
     const key = process.env.TRELLO_API_KEY;
     const token = process.env.TRELLO_API_TOKEN;
 
@@ -16,7 +16,7 @@ function getTrelloAuth(): TrelloAuth {
     return { key, token };
 }
 
-function getBaseUrl(): string {
+export function getBaseUrl(): string {
     const baseURL = process.env.TRELLO_API_BASE_URL;
     if (!baseURL) {
         throw new Error('Trello API base URL (TRELLO_API_BASE_URL) is missing');
@@ -24,88 +24,30 @@ function getBaseUrl(): string {
     return baseURL;
 }
 
-export async function createBoard(): Promise<{ boardId: string; boardName: string }> {
-    const trelloAuth = getTrelloAuth();
-    const baseURL = getBaseUrl();
-
-    const apiRequestContext = await request.newContext({
-        baseURL,
-    });
-
-    const boardName = 'Board_' + Math.random().toString(36).substring(2, 8);
-    const params = {
-        name: boardName,
-        key: trelloAuth.key,
-        token: trelloAuth.token,
-    };
-
-    const postUrl = `boards/?${new URLSearchParams(params).toString()}`;
-    const response = await apiRequestContext.post(postUrl);
-
-    if (response.status() !== 200) {
-        throw new Error(`Expected 200 success status when creating board but got ${response.status()}`);
-    }
-
-    const jsonData = await response.json();
-    if (!jsonData.shortUrl) {
-        throw new Error('Response from board creation does not contain shortUrl');
-    }
-
-    const boardId = jsonData.shortUrl.split('/').pop();
-    if (!boardId || boardId.length === 0) {
-        throw new Error('Board ID from board creation is invalid or missing');
-    }
-
-    return { boardId, boardName };
-}
-
 export async function getListsOnABoard(boardId: string): Promise<string[]> {
     const trelloAuth = getTrelloAuth();
     const baseURL = getBaseUrl();
-
-    const apiRequestContext = await request.newContext({
-        baseURL,
-    });
-
-    const params = {
-        key: trelloAuth.key,
-        token: trelloAuth.token,
-    };
-
-    const getUrl = `boards/${boardId}/lists?${new URLSearchParams(params).toString()}`;
+    const apiRequestContext = await request.newContext({ baseURL });
+    const getUrl = `boards/${boardId}/lists?key=${trelloAuth.key}&token=${trelloAuth.token}`;
     const response = await apiRequestContext.get(getUrl);
-
     if (response.status() !== 200) {
         throw new Error(`Expected 200 success status when retrieving lists but got ${response.status()}`);
     }
-
     const jsonData = await response.json();
     const listIds = jsonData.map((list: any) => list.id).filter(Boolean);
-
     return listIds;
 }
 
 export async function deleteAllBoards(): Promise<void> {
     const trelloAuth = getTrelloAuth();
     const baseURL = getBaseUrl();
-
-    const apiRequestContext = await request.newContext({
-        baseURL,
-    });
-
-    const params = {
-        key: trelloAuth.key,
-        token: trelloAuth.token,
-    };
-
-    const getUrl = `members/me/boards?${new URLSearchParams(params).toString()}`;
+    const apiRequestContext = await request.newContext({ baseURL });
+    const getUrl = `members/me/boards?key=${trelloAuth.key}&token=${trelloAuth.token}`;
     const membersResponse = await apiRequestContext.get(getUrl);
     const json = await membersResponse.json();
-
     const shortLinks = json.map((b: any) => b.shortLink).filter(Boolean);
-
     for (const shortLink of shortLinks) {
-        const deleteUrl = `boards/${shortLink}?${new URLSearchParams(params).toString()}`;
+        const deleteUrl = `boards/${shortLink}?key=${trelloAuth.key}&token=${trelloAuth.token}`;
         const deleteResponse: APIResponse = await apiRequestContext.delete(deleteUrl);
         if (deleteResponse.status() !== 200) {
             console.warn(`Warning: Expected 200 success status when deleting board ${shortLink} but got ${deleteResponse.status()}`);

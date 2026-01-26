@@ -1,5 +1,6 @@
 Feature: Trello Board API Endpoint
 
+  @board
   Scenario: Create a new board via API
     Given I am authenticated with the Trello API
     When I send a request to create a board
