@@ -4,7 +4,6 @@ import 'dotenv/config';
 import { createBoard, deleteAllBoards, getListsOnABoard } from './trelloClient';
 
 Before({ tags: '@board' }, async function () {
-    console.log('Before @board hook running');
     // Create a Trello board before tagged scenarios using the Trello client helper
     const { boardId, boardName } = await createBoard();
 
@@ -14,7 +13,6 @@ Before({ tags: '@board' }, async function () {
 });
 
 Before({ tags: '@card' }, async function () {
-    console.log('Before @card hook running');
 
     this.apiRequestContext = await request.newContext({
         baseURL: process.env.TRELLO_API_BASE_URL!,

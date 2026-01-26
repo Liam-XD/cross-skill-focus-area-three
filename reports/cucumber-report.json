@@ -1,0 +1,619 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;create-a-new-board-via-api",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Create a new board via API",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am authenticated with the Trello API",
+            "match": {
+              "location": "features/steps/board-actions.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31102540
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I send a request to create a board",
+            "match": {
+              "location": "features/steps/board-actions.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 502500792
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 373792
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the response should contain a valid board ID",
+            "match": {
+              "location": "features/steps/board-actions.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1876250
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;retrieve-a-board-by-boardid",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Retrieve a board by boardID",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 380387457
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "I have a valid board ID",
+            "match": {
+              "location": "features/steps/board-actions.ts:37"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 413375
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "I send a request to retrieve the board details",
+            "match": {
+              "location": "features/steps/board-actions.ts:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 166704834
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 252958
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the response should contain the correct board information",
+            "match": {
+              "location": "features/steps/board-actions.ts:54"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1011124
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;update-a-board's-name-via-api",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Update a board's name via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 368872875
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "I have a valid board ID",
+            "match": {
+              "location": "features/steps/board-actions.ts:37"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 395708
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "I send a request to update the board's name",
+            "match": {
+              "location": "features/steps/board-actions.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 226612709
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 391415
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "the response should reflect the updated board name",
+            "match": {
+              "location": "features/steps/board-actions.ts:59"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1954959
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 16
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;delete-a-board-via-api",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "Delete a board via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 370611667
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 25,
+            "name": "I have a valid board ID",
+            "match": {
+              "location": "features/steps/board-actions.ts:37"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 172750
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I send a request to delete the board",
+            "match": {
+              "location": "features/steps/board-actions.ts:64"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 499232417
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68832
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the board should no longer exist when I attempt to retrieve it",
+            "match": {
+              "location": "features/steps/board-actions.ts:69"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 148361667
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 23
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "trello-board-api-endpoint",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Trello Board API Endpoint",
+    "tags": [],
+    "uri": "features/trello-board.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "trello-cards-api-endpoint;create-a-new-card-via-api",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Create a new card via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 908285250
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am authenticated with the Trello API",
+            "match": {
+              "location": "features/steps/board-actions.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1829625
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I send a request to create a card",
+            "match": {
+              "location": "features/steps/card-actions.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 330751917
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 447959
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "the response should contain a valid card ID",
+            "match": {
+              "location": "features/steps/card-actions.ts:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2651917
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@card",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-cards-api-endpoint;retrieve-a-card-by-cardid",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Retrieve a card by cardID",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 826557208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "I have a valid card ID",
+            "match": {
+              "location": "features/steps/card-actions.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 343417
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I send a request to retrieve the card details",
+            "match": {
+              "location": "features/steps/card-actions.ts:31"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 178855333
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 286541
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the response should contain the correct card information",
+            "match": {
+              "location": "features/steps/card-actions.ts:36"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2250415
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@card",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-cards-api-endpoint;update-a-card-name-via-api",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Update a card name via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 843156500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 19,
+            "name": "I have a valid card ID",
+            "match": {
+              "location": "features/steps/card-actions.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 311749
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "I send a request to update the card's name",
+            "match": {
+              "location": "features/steps/card-actions.ts:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 306869708
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 189542
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "the response should reflect the updated card name",
+            "match": {
+              "location": "features/steps/card-actions.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1295165
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@card",
+            "line": 17
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-cards-api-endpoint;delete-a-card-via-api",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "Delete a card via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 945599125
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 26,
+            "name": "I have a valid card ID",
+            "match": {
+              "location": "features/steps/card-actions.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 174917
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 27,
+            "name": "I send a request to delete the card",
+            "match": {
+              "location": "features/steps/card-actions.ts:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 296587499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "the API should return a success status",
+            "match": {
+              "location": "features/steps/board-actions.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 478708
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "the card should no longer exist when I attempt to retrieve it",
+            "match": {
+              "location": "features/steps/card-actions.ts:58"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 160949458
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@card",
+            "line": 24
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "trello-cards-api-endpoint",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Trello cards API Endpoint",
+    "tags": [],
+    "uri": "features/trello-cards.feature"
+  }
+]
