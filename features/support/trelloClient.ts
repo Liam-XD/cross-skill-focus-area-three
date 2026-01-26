@@ -59,6 +59,32 @@ export async function createBoard(): Promise<{ boardId: string; boardName: strin
     return { boardId, boardName };
 }
 
+export async function getListsOnABoard(boardId: string): Promise<string[]> {
+    const trelloAuth = getTrelloAuth();
+    const baseURL = getBaseUrl();
+
+    const apiRequestContext = await request.newContext({
+        baseURL,
+    });
+
+    const params = {
+        key: trelloAuth.key,
+        token: trelloAuth.token,
+    };
+
+    const getUrl = `boards/${boardId}/lists?${new URLSearchParams(params).toString()}`;
+    const response = await apiRequestContext.get(getUrl);
+
+    if (response.status() !== 200) {
+        throw new Error(`Expected 200 success status when retrieving lists but got ${response.status()}`);
+    }
+
+    const jsonData = await response.json();
+    const listIds = jsonData.map((list: any) => list.id).filter(Boolean);
+
+    return listIds;
+}
+
 export async function deleteAllBoards(): Promise<void> {
     const trelloAuth = getTrelloAuth();
     const baseURL = getBaseUrl();
@@ -81,7 +107,6 @@ export async function deleteAllBoards(): Promise<void> {
     for (const shortLink of shortLinks) {
         const deleteUrl = `boards/${shortLink}?${new URLSearchParams(params).toString()}`;
         const deleteResponse: APIResponse = await apiRequestContext.delete(deleteUrl);
-        console.log(`Deleted board with shortLink: ${shortLink}`);
         if (deleteResponse.status() !== 200) {
             console.warn(`Warning: Expected 200 success status when deleting board ${shortLink} but got ${deleteResponse.status()}`);
         }

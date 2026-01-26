@@ -1,11 +1,9 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { APIResponse } from '@playwright/test';
 import 'dotenv/config';
 import { TrelloBoardPage } from '../support/pages/boardPage';
 
 
 let trelloBoardPage: TrelloBoardPage | undefined;
-let response: APIResponse;
 
 async function getTrelloBoardPage(): Promise<TrelloBoardPage> {
     if (!trelloBoardPage) {
@@ -20,17 +18,20 @@ Given('I am authenticated with the Trello API', async function () {
 
 When('I send a request to create a board', async function () {
     const boardPage = await getTrelloBoardPage();
-    response = await boardPage.createBoard();
+    this.response = await boardPage.createBoard();
 });
 
 Then('the API should return a success status', async function () {
     const boardPage = await getTrelloBoardPage();
-    boardPage.assertSuccess(response, 200);
+    if (!this.response) {
+        throw new Error('Response is not available on the World. Ensure a request step has run before this assertion.');
+    }
+    boardPage.assertSuccess(this.response, 200);
 });
 
 Then('the response should contain a valid board ID', async function () {
     const boardPage = await getTrelloBoardPage();
-    this.boardId = await boardPage.extractBoardId(response);
+    this.boardId = await boardPage.extractBoardId(this.response);
 });
 
 Given('I have a valid board ID', async function () {
@@ -42,27 +43,27 @@ Given('I have a valid board ID', async function () {
 When('I send a request to update the board\'s name', async function () {
     const newBoardName = "Updated Board Name";
     const boardPage = await getTrelloBoardPage();
-    response = await boardPage.updateBoardName(this.boardId, newBoardName);
+    this.response = await boardPage.updateBoardName(this.boardId, newBoardName);
 });
 
 When('I send a request to retrieve the board details', async function () {
     const boardPage = await getTrelloBoardPage();
-    response = await boardPage.getBoard(this.boardId);
+    this.response = await boardPage.getBoard(this.boardId);
 });
 
 Then('the response should contain the correct board information', async function () {
     const boardPage = await getTrelloBoardPage();
-    await boardPage.assertBoardName(response, this.boardName);
+    await boardPage.assertBoardName(this.response, this.boardName);
 });
 
 Then('the response should reflect the updated board name', async function () {
     const boardPage = await getTrelloBoardPage();
-    await boardPage.assertBoardName(response, "Updated Board Name");
+    await boardPage.assertBoardName(this.response, "Updated Board Name");
 });
 
 When('I send a request to delete the board', async function () {
     const boardPage = await getTrelloBoardPage();
-    response = await boardPage.deleteBoard(this.boardId);
+    this.response = await boardPage.deleteBoard(this.boardId);
 });
 
 Then('the board should no longer exist when I attempt to retrieve it', async function () {

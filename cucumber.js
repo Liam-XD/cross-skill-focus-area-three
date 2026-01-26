@@ -5,6 +5,7 @@ module.exports = {
   require: ['features/steps/**/*.ts', 'features/support/**/*.ts'],
     requireModule: ['ts-node/register'],
     format: ['progress', 'html:cucumber-report.html'],
-    formatOptions: { snippetInterface: 'async-await' }
+    formatOptions: { snippetInterface: 'async-await' },
+    tags: 'not @skip' // Exclude scenarios tagged with @skip
   }
 };
