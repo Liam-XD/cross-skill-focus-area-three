@@ -1,3 +1,5 @@
+// This file contains VSCode settings for Cucumber integration.
+
 {
   "cucumber.glue": [
     "features/steps/**/*.ts"
