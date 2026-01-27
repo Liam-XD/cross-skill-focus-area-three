@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 23357167
+              "duration": 31051459
             }
           },
           {
@@ -22,7 +22,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 521732541
+              "duration": 472246167
             }
           },
           {
@@ -35,7 +35,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 400916
+              "duration": 201165
             }
           },
           {
@@ -48,7 +48,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 403766291
+              "duration": 410654291
             }
           },
           {
@@ -61,7 +61,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 359875
+              "duration": 215541
             }
           },
           {
@@ -74,7 +74,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 880083
+              "duration": 817165
             }
           },
           {
@@ -82,13 +82,17 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1043999
+              "duration": 1003624
             }
           }
         ],
         "tags": [
           {
             "name": "@board",
+            "line": 3
+          },
+          {
+            "name": "@smoke",
             "line": 3
           }
         ],
@@ -106,7 +110,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 642333
+              "duration": 748916
             }
           },
           {
@@ -114,7 +118,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 501298417
+              "duration": 402993042
             }
           },
           {
@@ -123,11 +127,11 @@
             "line": 12,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:34"
+              "location": "features/steps/board-actions.ts:39"
             },
             "result": {
               "status": "passed",
-              "duration": 279750
+              "duration": 168916
             }
           },
           {
@@ -136,11 +140,11 @@
             "line": 13,
             "name": "I send a request to retrieve the board details",
             "match": {
-              "location": "features/steps/board-actions.ts:47"
+              "location": "features/steps/board-actions.ts:63"
             },
             "result": {
               "status": "passed",
-              "duration": 176005375
+              "duration": 173911374
             }
           },
           {
@@ -153,7 +157,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 93249
+              "duration": 101874
             }
           },
           {
@@ -162,11 +166,11 @@
             "line": 15,
             "name": "the response should contain the correct board information",
             "match": {
-              "location": "features/steps/board-actions.ts:52"
+              "location": "features/steps/board-actions.ts:68"
             },
             "result": {
               "status": "passed",
-              "duration": 455042
+              "duration": 661250
             }
           },
           {
@@ -174,7 +178,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 410917
+              "duration": 535249
             }
           }
         ],
@@ -198,7 +202,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 524707
+              "duration": 610999
             }
           },
           {
@@ -206,7 +210,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 440258707
+              "duration": 323111625
             }
           },
           {
@@ -215,11 +219,11 @@
             "line": 19,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:34"
+              "location": "features/steps/board-actions.ts:39"
             },
             "result": {
               "status": "passed",
-              "duration": 77541
+              "duration": 75541
             }
           },
           {
@@ -228,11 +232,11 @@
             "line": 20,
             "name": "I send a request to update the board's name",
             "match": {
-              "location": "features/steps/board-actions.ts:41"
+              "location": "features/steps/board-actions.ts:51"
             },
             "result": {
               "status": "passed",
-              "duration": 302481915
+              "duration": 237209875
             }
           },
           {
@@ -245,7 +249,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 279417
+              "duration": 85042
             }
           },
           {
@@ -254,11 +258,11 @@
             "line": 22,
             "name": "the response should reflect the updated board name",
             "match": {
-              "location": "features/steps/board-actions.ts:57"
+              "location": "features/steps/board-actions.ts:73"
             },
             "result": {
               "status": "passed",
-              "duration": 1852249
+              "duration": 595500
             }
           },
           {
@@ -266,7 +270,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1059499
+              "duration": 477708
             }
           }
         ],
@@ -290,7 +294,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 478540
+              "duration": 491665
             }
           },
           {
@@ -298,7 +302,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 418575000
+              "duration": 403363416
             }
           },
           {
@@ -307,11 +311,11 @@
             "line": 26,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:34"
+              "location": "features/steps/board-actions.ts:39"
             },
             "result": {
               "status": "passed",
-              "duration": 205041
+              "duration": 76167
             }
           },
           {
@@ -320,11 +324,11 @@
             "line": 27,
             "name": "I send a request to delete the board",
             "match": {
-              "location": "features/steps/board-actions.ts:63"
+              "location": "features/steps/board-actions.ts:79"
             },
             "result": {
               "status": "passed",
-              "duration": 601587333
+              "duration": 808600832
             }
           },
           {
@@ -337,7 +341,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 200041
+              "duration": 212457
             }
           },
           {
@@ -346,11 +350,11 @@
             "line": 29,
             "name": "the board should no longer exist when I attempt to retrieve it",
             "match": {
-              "location": "features/steps/board-actions.ts:68"
+              "location": "features/steps/board-actions.ts:84"
             },
             "result": {
               "status": "passed",
-              "duration": 165631207
+              "duration": 149516791
             }
           },
           {
@@ -358,7 +362,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 636915
+              "duration": 903083
             }
           }
         ],
@@ -366,6 +370,215 @@
           {
             "name": "@board",
             "line": 24
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;update-a-deleted-board-via-api",
+        "keyword": "Scenario",
+        "line": 32,
+        "name": "Update a deleted board via API",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 697208
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 377823957
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 33,
+            "name": "I have a valid board ID",
+            "match": {
+              "location": "features/steps/board-actions.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 93166
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "I send a request to delete the board",
+            "match": {
+              "location": "features/steps/board-actions.ts:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 534772458
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 35,
+            "name": "I send a request to update the deleted board's name",
+            "match": {
+              "location": "features/steps/board-actions.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 152389416
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 36,
+            "name": "the API should return a 404 status",
+            "match": {
+              "location": "features/steps/common-api-steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 277000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "the response should contain a message \"Board not found\"",
+            "match": {
+              "location": "features/steps/common-api-steps.ts:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3513708
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 414958
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 31
+          },
+          {
+            "name": "@negative",
+            "line": 31
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "trello-board-api-endpoint;create-a-board-with-invalid-api-key",
+        "keyword": "Scenario",
+        "line": 40,
+        "name": "Create a board with invalid API key",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 472999
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 349243416
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 41,
+            "name": "I am using an invalid Trello API key",
+            "match": {
+              "location": "features/steps/board-actions.ts:45"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 188124
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 42,
+            "name": "I send an unauthorized request to create a board",
+            "match": {
+              "location": "features/steps/board-actions.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 121179917
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "the API should return an unauthenticated or forbidden status",
+            "match": {
+              "location": "features/steps/common-api-steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 326790
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "the response should contain a message \"invalid key\"",
+            "match": {
+              "location": "features/steps/common-api-steps.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3827500
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 634000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@board",
+            "line": 39
+          },
+          {
+            "name": "@smoke",
+            "line": 39
+          },
+          {
+            "name": "@negative",
+            "line": 39
           }
         ],
         "type": "scenario"
@@ -393,7 +606,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 352165
+              "duration": 775375
             }
           },
           {
@@ -401,7 +614,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 966673208
+              "duration": 952975416
             }
           },
           {
@@ -414,7 +627,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 255167
+              "duration": 150749
             }
           },
           {
@@ -427,7 +640,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 326201374
+              "duration": 392443749
             }
           },
           {
@@ -440,7 +653,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 208875
+              "duration": 127542
             }
           },
           {
@@ -453,7 +666,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1479500
+              "duration": 1023083
             }
           },
           {
@@ -461,13 +674,17 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 804500
+              "duration": 803167
             }
           }
         ],
         "tags": [
           {
             "name": "@card",
+            "line": 3
+          },
+          {
+            "name": "@smoke",
             "line": 3
           }
         ],
@@ -485,7 +702,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1197540
+              "duration": 1388500
             }
           },
           {
@@ -493,7 +710,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1096640124
+              "duration": 880590832
             }
           },
           {
@@ -506,7 +723,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 438833
+              "duration": 399959
             }
           },
           {
@@ -519,7 +736,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 183887417
+              "duration": 179219624
             }
           },
           {
@@ -532,7 +749,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 83875
+              "duration": 82875
             }
           },
           {
@@ -545,7 +762,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 710583
+              "duration": 609583
             }
           },
           {
@@ -553,7 +770,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 517374
+              "duration": 365916
             }
           }
         ],
@@ -577,7 +794,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 591000
+              "duration": 577917
             }
           },
           {
@@ -585,7 +802,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 940005915
+              "duration": 932271833
             }
           },
           {
@@ -598,7 +815,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 215459
+              "duration": 155708
             }
           },
           {
@@ -611,7 +828,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 640549042
+              "duration": 304671749
             }
           },
           {
@@ -624,7 +841,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 181957
+              "duration": 126208
             }
           },
           {
@@ -637,7 +854,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3526041
+              "duration": 957083
             }
           },
           {
@@ -645,7 +862,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 819875
+              "duration": 1629500
             }
           }
         ],
@@ -669,7 +886,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 970167
+              "duration": 946208
             }
           },
           {
@@ -677,7 +894,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 936539249
+              "duration": 972770583
             }
           },
           {
@@ -690,7 +907,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 228667
+              "duration": 173500
             }
           },
           {
@@ -703,7 +920,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 356267167
+              "duration": 307623834
             }
           },
           {
@@ -716,7 +933,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 183875
+              "duration": 152833
             }
           },
           {
@@ -729,7 +946,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 157031666
+              "duration": 150980292
             }
           },
           {
@@ -737,7 +954,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1610958
+              "duration": 1525959
             }
           }
         ],

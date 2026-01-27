@@ -1,10 +1,12 @@
 {
-  "name": "playwright-tests",
+  "name": "trello-api-tests",
   "version": "1.0.0",
-  "description": "End-to-end testing project using Playwright and TypeScript.",
+  "description": "End-to-end testing project using Playwright, TypeScript & Cucumber.",
   "scripts": {
+    "test:smoke": "npx cucumber-js --tags '@smoke'",
     "test:cucumber": "cucumber-js --require-module ts-node/register --require features/steps/**/*.ts features --format json:reports/cucumber-report.json",
-    "report:cucumber": "node reports/generate-cucumber-report.js"
+    "report:cucumber": "node reports/generate-cucumber-report.js",
+    "dryrun": "cucumber-js features/ --dry-run --config cucumber.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.5.0",

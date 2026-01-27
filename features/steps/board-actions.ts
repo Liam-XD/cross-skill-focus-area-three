@@ -31,10 +31,20 @@ Then('the response should contain a valid board ID', async function () {
     this.boardId = await boardPage.extractBoardId(this.response);
 });
 
+When('I send an unauthorized request to create a board', async function () {
+    const boardPage = await getTrelloBoardPage(this);
+    this.response = await boardPage.unauthorizedCreateBoard();
+});
+
 Given('I have a valid board ID', async function () {
     if (!this.boardId) {
         throw new Error('Board ID is not available on the World. Ensure the @board hook has run and created a board.');
     }
+});
+
+Given('I am using an invalid Trello API key', async function () {
+    const boardPage = await getTrelloBoardPage(this);
+    boardPage.setInvalidApiKey('invalid_key');
 });
 
 // --- Board Update & Retrieval ---
@@ -42,6 +52,12 @@ When('I send a request to update the board\'s name', async function () {
     const newBoardName = "Updated Board Name";
     const boardPage = await getTrelloBoardPage(this);
     this.response = await boardPage.updateBoardName(this.boardId, newBoardName);
+});
+
+When('I send a request to update the deleted board\'s name', async function () {
+    const newBoardName = "Deleted Board";
+    const boardPage = await getTrelloBoardPage(this);
+    this.response = await boardPage.updateDeletedBoardName(this.boardId, newBoardName);
 });
 
 When('I send a request to retrieve the board details', async function () {

@@ -15,6 +15,7 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
     projects: [
+        // Currently, only API tests are implemented, so no browser projects are needed.
         // {
         //     name: 'chromium',
         //     use: { ...devices['Desktop Chrome'] },

@@ -1,6 +1,6 @@
 Feature: Trello Cards API Endpoint
 
-  @card
+  @card @smoke
   Scenario: Create a new card via API
     Given I am authenticated with the Trello API
     When I send a request to create a card

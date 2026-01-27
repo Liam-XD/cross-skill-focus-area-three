@@ -37,6 +37,14 @@ export class TrelloBoardPage extends TrelloApiPage {
         return response;
     }
 
+    async unauthorizedCreateBoard(boardName?: string): Promise<APIResponse> {
+        const name = boardName ?? 'Board_' + Math.random().toString(36).substring(2, 8);
+        const postUrl = this.buildUrl('boards/', { name });
+        const response = await this.apiRequestContext.post(postUrl);
+        await this.assertSuccess(response, 401);
+        return response;
+    }
+
     async extractBoardId(response: APIResponse): Promise<string> {
         const jsonData = await response.json();
         if (!jsonData.shortUrl) {
@@ -72,6 +80,17 @@ export class TrelloBoardPage extends TrelloApiPage {
         return response;
     }
 
+    async updateDeletedBoardName(boardId: string, newBoardName: string): Promise<APIResponse> {
+        const putUrl = this.buildUrl(`boards/${boardId}`);
+        const response = await this.apiRequestContext.put(putUrl, {
+            form: {
+                name: newBoardName,
+            },
+        });
+        await this.assertSuccess(response, 404);
+        return response;
+    }
+
     async deleteBoard(boardId: string): Promise<APIResponse> {
         const deleteUrl = this.buildUrl(`boards/${boardId}`);
         return this.apiRequestContext.delete(deleteUrl);
@@ -82,5 +101,9 @@ export class TrelloBoardPage extends TrelloApiPage {
         if (response.status() !== 404) {
             throw new Error(`Expected 404 status for deleted board but got ${response.status()}`);
         }
+    }
+
+    async setInvalidApiKey(invalidKey: string): Promise<void> {
+        this.trelloAuth.key = invalidKey;
     }
 }
