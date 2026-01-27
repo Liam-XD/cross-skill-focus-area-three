@@ -29,35 +29,52 @@ export function getBaseUrl(): string {
     return baseURL;
 }
 
-// Function to retrieve all list IDs on a given Trello board
+/**
+ * Retrieve all list IDs on a given Trello board.
+ * @param boardId - The board ID/shortLink to fetch lists for
+ * @returns Array of list IDs
+ */
 export async function getListsOnABoard(boardId: string): Promise<string[]> {
     const trelloAuth = getTrelloAuth();
     const baseURL = getBaseUrl();
     const apiRequestContext = await request.newContext({ baseURL });
-    const getUrl = `boards/${boardId}/lists?key=${trelloAuth.key}&token=${trelloAuth.token}`;
-    const response = await apiRequestContext.get(getUrl);
-    if (response.status() !== 200) {
-        throw new Error(`Expected 200 success status when retrieving lists but got ${response.status()}`);
+
+    try {
+        const getUrl = `boards/${boardId}/lists?key=${trelloAuth.key}&token=${trelloAuth.token}`;
+        const response = await apiRequestContext.get(getUrl);
+        if (response.status() !== 200) {
+            throw new Error(`Expected 200 success status when retrieving lists but got ${response.status()}`);
+        }
+        const jsonData = await response.json();
+        const listIds = jsonData.map((list: any) => list.id).filter(Boolean); // Extract and filter valid list IDs
+        return listIds;
+    } finally {
+        await apiRequestContext.dispose();
     }
-    const jsonData = await response.json();
-    const listIds = jsonData.map((list: any) => list.id).filter(Boolean); // Extract and filter valid list IDs
-    return listIds;
 }
 
-// Function to delete all Trello boards for the authenticated user
+/**
+ * Delete all Trello boards for the authenticated user.
+ * WARNING: This is a destructive operation that deletes ALL boards. Not only those created during tests.
+ */
 export async function deleteAllBoards(): Promise<void> {
     const trelloAuth = getTrelloAuth();
     const baseURL = getBaseUrl();
     const apiRequestContext = await request.newContext({ baseURL });
-    const getUrl = `members/me/boards?key=${trelloAuth.key}&token=${trelloAuth.token}`;
-    const membersResponse = await apiRequestContext.get(getUrl);
-    const json = await membersResponse.json();
-    const shortLinks = json.map((board: any) => board.shortLink).filter(Boolean); // Extract and filter valid shortLinks
-    for (const shortLink of shortLinks) {
-        const deleteUrl = `boards/${shortLink}?key=${trelloAuth.key}&token=${trelloAuth.token}`;
-        const deleteResponse: APIResponse = await apiRequestContext.delete(deleteUrl);
-        if (deleteResponse.status() !== 200) {
-            console.warn(`Warning: Expected 200 success status when deleting board ${shortLink} but got ${deleteResponse.status()}`);
+
+    try {
+        const getUrl = `members/me/boards?key=${trelloAuth.key}&token=${trelloAuth.token}`;
+        const membersResponse = await apiRequestContext.get(getUrl);
+        const json = await membersResponse.json();
+        const shortLinks = json.map((board: any) => board.shortLink).filter(Boolean); // Extracts the shortLink for each board and filters out invalid ones.
+        for (const shortLink of shortLinks) {
+            const deleteUrl = `boards/${shortLink}?key=${trelloAuth.key}&token=${trelloAuth.token}`;
+            const deleteResponse: APIResponse = await apiRequestContext.delete(deleteUrl);
+            if (deleteResponse.status() !== 200) {
+                throw new Error(`Expected 200 success status when deleting board ${shortLink} but got ${deleteResponse.status()}`);
+            }
         }
+    } finally {
+        await apiRequestContext.dispose();
     }
 }

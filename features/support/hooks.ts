@@ -1,10 +1,17 @@
 // This file contains Cucumber hooks to manage Trello boards and cards for test scenarios.
 
-import { AfterAll, After, Before } from '@cucumber/cucumber';
+import { AfterAll, After, BeforeAll, Before } from '@cucumber/cucumber';
 import { request } from '@playwright/test';
 import 'dotenv/config';
 import { deleteAllBoards, getListsOnABoard, getBaseUrl } from './trelloClient';
 import { TrelloBoardPage } from './pages/boardPage';
+import { validateEnvVars } from './envValidation';
+
+
+// Validate required environment variables before all tests
+BeforeAll(async function () {
+    validateEnvVars();
+});
 
 // Shared APIRequestContext for @board and @card scenarios
 Before({ tags: '@board or @card' }, async function () {
@@ -32,6 +39,7 @@ Before({ tags: '@card' }, async function () {
     const boardId = await boardPage.extractBoardId(response);
     const json = await response.json();
     const boardName = json.name;
+    // Pass shared context to avoid creating/leaking additional contexts
     const lists = await getListsOnABoard(boardId);
     if (lists.length === 0) {
         throw new Error('No lists found on the newly created board');
