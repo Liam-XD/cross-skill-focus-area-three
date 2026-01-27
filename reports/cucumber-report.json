@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 27332042
+              "duration": 34065667
             }
           },
           {
@@ -22,7 +22,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 580083874
+              "duration": 589834625
             }
           },
           {
@@ -31,11 +31,11 @@
             "line": 5,
             "name": "I am authenticated with the Trello API",
             "match": {
-              "location": "features/steps/board-actions.ts:18"
+              "location": "features/steps/board-actions.ts:20"
             },
             "result": {
               "status": "passed",
-              "duration": 415124
+              "duration": 222916
             }
           },
           {
@@ -44,11 +44,11 @@
             "line": 6,
             "name": "I send a request to create a board",
             "match": {
-              "location": "features/steps/board-actions.ts:22"
+              "location": "features/steps/board-actions.ts:24"
             },
             "result": {
               "status": "passed",
-              "duration": 374357166
+              "duration": 553757999
             }
           },
           {
@@ -57,11 +57,11 @@
             "line": 7,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 444167
+              "duration": 595917
             }
           },
           {
@@ -70,11 +70,11 @@
             "line": 8,
             "name": "the response should contain a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:27"
+              "location": "features/steps/board-actions.ts:29"
             },
             "result": {
               "status": "passed",
-              "duration": 1366707
+              "duration": 1515082
             }
           },
           {
@@ -82,7 +82,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1946791
+              "duration": 1859500
             }
           }
         ],
@@ -106,7 +106,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1888875
+              "duration": 1957750
             }
           },
           {
@@ -114,7 +114,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 391250875
+              "duration": 386482625
             }
           },
           {
@@ -123,11 +123,11 @@
             "line": 12,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:32"
+              "location": "features/steps/board-actions.ts:34"
             },
             "result": {
               "status": "passed",
-              "duration": 146666
+              "duration": 201042
             }
           },
           {
@@ -136,11 +136,11 @@
             "line": 13,
             "name": "I send a request to retrieve the board details",
             "match": {
-              "location": "features/steps/board-actions.ts:45"
+              "location": "features/steps/board-actions.ts:47"
             },
             "result": {
               "status": "passed",
-              "duration": 172787374
+              "duration": 167500958
             }
           },
           {
@@ -149,11 +149,11 @@
             "line": 14,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 170749
+              "duration": 240542
             }
           },
           {
@@ -162,11 +162,11 @@
             "line": 15,
             "name": "the response should contain the correct board information",
             "match": {
-              "location": "features/steps/board-actions.ts:50"
+              "location": "features/steps/board-actions.ts:52"
             },
             "result": {
               "status": "passed",
-              "duration": 831375
+              "duration": 1132041
             }
           },
           {
@@ -174,7 +174,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 691084
+              "duration": 968292
             }
           }
         ],
@@ -198,7 +198,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 897083
+              "duration": 1489625
             }
           },
           {
@@ -206,7 +206,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 416746791
+              "duration": 380259041
             }
           },
           {
@@ -215,11 +215,11 @@
             "line": 19,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:32"
+              "location": "features/steps/board-actions.ts:34"
             },
             "result": {
               "status": "passed",
-              "duration": 163167
+              "duration": 210915
             }
           },
           {
@@ -228,11 +228,11 @@
             "line": 20,
             "name": "I send a request to update the board's name",
             "match": {
-              "location": "features/steps/board-actions.ts:39"
+              "location": "features/steps/board-actions.ts:41"
             },
             "result": {
               "status": "passed",
-              "duration": 233187666
+              "duration": 248266082
             }
           },
           {
@@ -241,11 +241,11 @@
             "line": 21,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 269792
+              "duration": 332625
             }
           },
           {
@@ -254,11 +254,11 @@
             "line": 22,
             "name": "the response should reflect the updated board name",
             "match": {
-              "location": "features/steps/board-actions.ts:55"
+              "location": "features/steps/board-actions.ts:57"
             },
             "result": {
               "status": "passed",
-              "duration": 1701458
+              "duration": 1853333
             }
           },
           {
@@ -266,7 +266,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1284165
+              "duration": 1583375
             }
           }
         ],
@@ -290,7 +290,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1101874
+              "duration": 1531167
             }
           },
           {
@@ -298,7 +298,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 412567292
+              "duration": 543375791
             }
           },
           {
@@ -307,11 +307,11 @@
             "line": 26,
             "name": "I have a valid board ID",
             "match": {
-              "location": "features/steps/board-actions.ts:32"
+              "location": "features/steps/board-actions.ts:34"
             },
             "result": {
               "status": "passed",
-              "duration": 203042
+              "duration": 148999
             }
           },
           {
@@ -320,11 +320,11 @@
             "line": 27,
             "name": "I send a request to delete the board",
             "match": {
-              "location": "features/steps/board-actions.ts:61"
+              "location": "features/steps/board-actions.ts:63"
             },
             "result": {
               "status": "passed",
-              "duration": 515704334
+              "duration": 543483332
             }
           },
           {
@@ -333,11 +333,11 @@
             "line": 28,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 176416
+              "duration": 221749
             }
           },
           {
@@ -346,11 +346,11 @@
             "line": 29,
             "name": "the board should no longer exist when I attempt to retrieve it",
             "match": {
-              "location": "features/steps/board-actions.ts:66"
+              "location": "features/steps/board-actions.ts:68"
             },
             "result": {
               "status": "passed",
-              "duration": 150662999
+              "duration": 156104292
             }
           },
           {
@@ -358,7 +358,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1411875
+              "duration": 2101166
             }
           }
         ],
@@ -393,7 +393,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1406500
+              "duration": 974958
             }
           },
           {
@@ -401,7 +401,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 882842875
+              "duration": 1025673125
             }
           },
           {
@@ -410,11 +410,11 @@
             "line": 5,
             "name": "I am authenticated with the Trello API",
             "match": {
-              "location": "features/steps/board-actions.ts:18"
+              "location": "features/steps/board-actions.ts:20"
             },
             "result": {
               "status": "passed",
-              "duration": 146707
+              "duration": 244624
             }
           },
           {
@@ -423,11 +423,11 @@
             "line": 6,
             "name": "I send a request to create a card",
             "match": {
-              "location": "features/steps/card-actions.ts:17"
+              "location": "features/steps/card-actions.ts:19"
             },
             "result": {
               "status": "passed",
-              "duration": 328622041
+              "duration": 354158833
             }
           },
           {
@@ -436,11 +436,11 @@
             "line": 7,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 660499
+              "duration": 259584
             }
           },
           {
@@ -449,11 +449,11 @@
             "line": 8,
             "name": "the response should contain a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:22"
+              "location": "features/steps/card-actions.ts:24"
             },
             "result": {
               "status": "passed",
-              "duration": 2032541
+              "duration": 1519167
             }
           },
           {
@@ -461,7 +461,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 905583
+              "duration": 789915
             }
           }
         ],
@@ -485,7 +485,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1037666
+              "duration": 986874
             }
           },
           {
@@ -493,7 +493,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 972506333
+              "duration": 907319832
             }
           },
           {
@@ -502,11 +502,11 @@
             "line": 12,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:29"
+              "location": "features/steps/card-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 256833
+              "duration": 402332
             }
           },
           {
@@ -515,11 +515,11 @@
             "line": 13,
             "name": "I send a request to retrieve the card details",
             "match": {
-              "location": "features/steps/card-actions.ts:35"
+              "location": "features/steps/card-actions.ts:37"
             },
             "result": {
               "status": "passed",
-              "duration": 187984416
+              "duration": 166580874
             }
           },
           {
@@ -528,11 +528,11 @@
             "line": 14,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 301166
+              "duration": 268124
             }
           },
           {
@@ -541,11 +541,11 @@
             "line": 15,
             "name": "the response should contain the correct card information",
             "match": {
-              "location": "features/steps/card-actions.ts:40"
+              "location": "features/steps/card-actions.ts:42"
             },
             "result": {
               "status": "passed",
-              "duration": 2175082
+              "duration": 1686208
             }
           },
           {
@@ -553,7 +553,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1330958
+              "duration": 1161834
             }
           }
         ],
@@ -577,7 +577,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1360000
+              "duration": 1241957
             }
           },
           {
@@ -585,7 +585,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 948481375
+              "duration": 941025624
             }
           },
           {
@@ -594,11 +594,11 @@
             "line": 19,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:29"
+              "location": "features/steps/card-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 164666
+              "duration": 174958
             }
           },
           {
@@ -607,11 +607,11 @@
             "line": 20,
             "name": "I send a request to update the card's name",
             "match": {
-              "location": "features/steps/card-actions.ts:46"
+              "location": "features/steps/card-actions.ts:48"
             },
             "result": {
               "status": "passed",
-              "duration": 371190500
+              "duration": 378315375
             }
           },
           {
@@ -620,11 +620,11 @@
             "line": 21,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 177458
+              "duration": 229583
             }
           },
           {
@@ -633,11 +633,11 @@
             "line": 22,
             "name": "the response should reflect the updated card name",
             "match": {
-              "location": "features/steps/card-actions.ts:52"
+              "location": "features/steps/card-actions.ts:54"
             },
             "result": {
               "status": "passed",
-              "duration": 1429417
+              "duration": 1390790
             }
           },
           {
@@ -645,7 +645,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 590792
+              "duration": 953667
             }
           }
         ],
@@ -669,7 +669,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 378832
+              "duration": 1013499
             }
           },
           {
@@ -677,7 +677,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1001471374
+              "duration": 1227557041
             }
           },
           {
@@ -686,11 +686,11 @@
             "line": 26,
             "name": "I have a valid card ID",
             "match": {
-              "location": "features/steps/card-actions.ts:29"
+              "location": "features/steps/card-actions.ts:31"
             },
             "result": {
               "status": "passed",
-              "duration": 254084
+              "duration": 264957
             }
           },
           {
@@ -699,11 +699,11 @@
             "line": 27,
             "name": "I send a request to delete the card",
             "match": {
-              "location": "features/steps/card-actions.ts:58"
+              "location": "features/steps/card-actions.ts:60"
             },
             "result": {
               "status": "passed",
-              "duration": 307929292
+              "duration": 310047957
             }
           },
           {
@@ -712,11 +712,11 @@
             "line": 28,
             "name": "the API should return a success status",
             "match": {
-              "location": "features/steps/common-api-steps.ts:3"
+              "location": "features/steps/common-api-steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 92166
+              "duration": 104249
             }
           },
           {
@@ -725,11 +725,11 @@
             "line": 29,
             "name": "the card should no longer exist when I attempt to retrieve it",
             "match": {
-              "location": "features/steps/card-actions.ts:63"
+              "location": "features/steps/card-actions.ts:65"
             },
             "result": {
               "status": "passed",
-              "duration": 156774874
+              "duration": 159690000
             }
           },
           {
@@ -737,7 +737,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1248540
+              "duration": 1510041
             }
           }
         ],
