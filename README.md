@@ -32,6 +32,7 @@ It will allow the user to create, read, update, and delete resources such as boa
   - [Cucumber Features](#cucumber-features)
   - [Step Definitions](#step-definitions)
   - [Support Files](#support-files)
+- [Future Enhancements](#future-enhancements)
 - [Extending the Tests](#extending-the-tests)
 - [Conclusion](#conclusion)
 
@@ -208,6 +209,15 @@ The step definitions are located in the [features/steps/](features/steps/) direc
 ### Support Files
 
 The support files are located in the [features/support/](features/support/) directory. This is where the majority of code that executes the behaviour described in the feature file lives. This includes hooks, custom commands, and utility functions that can be used across multiple step definitions.
+
+## Future Enhancements
+
+1. **Parallel Test Execution**:
+   I would like the tests to run in parallel to reduce overall execution time.
+   This is possibel, as per the parallel option in the `cucumber.js` file, however, I have encountered issues with rate limiting from the Trello API when running the afterAll hook to clean up created boards.
+
+2. **Destructive Cleanup**:
+   The current cleanup step deletes all Trello boards for the authenticated user, which may not be desirable in all cases. A more targeted cleanup approach could be implemented to only delete boards created during the test runs.
 
 ## Extending the Tests
 

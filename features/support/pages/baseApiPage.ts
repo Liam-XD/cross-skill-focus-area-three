@@ -1,7 +1,8 @@
-// This is the base class for Trello API Page Objects
+// This is the Trello API Page Objects base class. It provides common functionality for Trello API interactions.
 
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { TrelloAuth } from '../trelloClient';
+import { API_ERRORS } from '../helpers';
 
 export abstract class TrelloApiPage {
     protected apiRequestContext: APIRequestContext;
@@ -20,7 +21,8 @@ export abstract class TrelloApiPage {
             } catch (error) {
                 bodyText = '[unavailable]';
             }
-            throw new Error(`Expected ${expectedStatus} success status but got ${response.status()}\nResponse body: ${bodyText}`);
+            const statusError = expectedStatus === 200 ? API_ERRORS.EXPECTED_200_STATUS(response.status()) : `Expected ${expectedStatus} success status but got ${response.status()}`;
+            throw new Error(`${statusError}\nResponse body: ${bodyText}`);
         }
     }
 

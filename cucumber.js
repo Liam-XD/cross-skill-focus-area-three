@@ -6,6 +6,7 @@ module.exports = {
     requireModule: ['ts-node/register'],
     format: ['progress', 'html:reports/cucumber-report.html'],
     formatOptions: { snippetInterface: 'async-await' },
-    tags: 'not @skip' // Exclude scenarios tagged with @skip
+    tags: 'not @skip', // Exclude scenarios tagged with @skip
+    parallel: 1
   }
 };

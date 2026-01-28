@@ -2,86 +2,70 @@
 
 import { Given, When, Then } from '@cucumber/cucumber';
 import 'dotenv/config';
-import { TrelloBoardPage } from '../support/pages/boardPage';
-
-
-// Helper to get or create TrelloBoardPage instance
-async function getTrelloBoardPage(world: any): Promise<TrelloBoardPage> {
-    if (!world.apiRequestContext) {
-        throw new Error('APIRequestContext is not initialised on World. Ensure the Before hook creates it.');
-    }
-    if (!world.trelloBoardPage) {
-        world.trelloBoardPage = TrelloBoardPage.fromContext(world.apiRequestContext);
-    }
-    return world.trelloBoardPage;
-}
+import { assertDefined, ERRORS } from '../support/helpers';
 
 // --- Setup & Board Creation ---
 Given('I am authenticated with the Trello API', async function () {
-    await getTrelloBoardPage(this);
+    this.boardPage;
 });
 
 When('I send a request to create a board', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.createBoard();
+    this.response = await this.boardPage.createBoard();
 });
 
 Then('the response should contain a valid board ID', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    this.boardId = await boardPage.extractBoardId(this.response);
+    const response = assertDefined(this.response, ERRORS.RESPONSE_UNAVAILABLE);
+    this.boardId = await this.boardPage.extractBoardId(response);
 });
 
 When('I send an unauthorized request to create a board', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.unauthorizedCreateBoard();
+    this.response = await this.boardPage.unauthorizedCreateBoard();
 });
 
 Given('I have a valid board ID', async function () {
-    if (!this.boardId) {
-        throw new Error('Board ID is not available on the World. Ensure the @board hook has run and created a board.');
-    }
+    assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
 });
 
 Given('I am using an invalid Trello API key', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    boardPage.setInvalidApiKey('invalid_key');
+    this.boardPage.setInvalidApiKey('invalid_key');
 });
 
 // --- Board Update & Retrieval ---
 When('I send a request to update the board\'s name', async function () {
     const newBoardName = "Updated Board Name";
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.updateBoardName(this.boardId, newBoardName);
+    const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    this.response = await this.boardPage.updateBoardName(boardId, newBoardName);
 });
 
 When('I send a request to update the deleted board\'s name', async function () {
     const newBoardName = "Deleted Board";
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.updateDeletedBoardName(this.boardId, newBoardName);
+    const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    this.response = await this.boardPage.updateDeletedBoardName(boardId, newBoardName);
 });
 
 When('I send a request to retrieve the board details', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.getBoard(this.boardId);
+    const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    this.response = await this.boardPage.getBoard(boardId);
 });
 
 Then('the response should contain the correct board information', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    await boardPage.assertBoardName(this.response, this.boardName);
+    const response = assertDefined(this.response, ERRORS.RESPONSE_UNAVAILABLE);
+    const boardName = assertDefined(this.boardName, ERRORS.BOARD_NAME_UNAVAILABLE);
+    await this.boardPage.assertBoardName(response, boardName);
 });
 
 Then('the response should reflect the updated board name', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    await boardPage.assertBoardName(this.response, "Updated Board Name");
+    const response = assertDefined(this.response, ERRORS.RESPONSE_UNAVAILABLE);
+    await this.boardPage.assertBoardName(response, "Updated Board Name");
 });
 
 // --- Board Deletion ---
 When('I send a request to delete the board', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    this.response = await boardPage.deleteBoard(this.boardId);
+    const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    this.response = await this.boardPage.deleteBoard(boardId);
 });
 
 Then('the board should no longer exist when I attempt to retrieve it', async function () {
-    const boardPage = await getTrelloBoardPage(this);
-    await boardPage.assertBoardDeleted(this.boardId);
+    const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    await this.boardPage.assertBoardDeleted(boardId);
 });

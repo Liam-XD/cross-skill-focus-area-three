@@ -1,6 +1,7 @@
 // This file contains helper functions to interact with the Trello API for board and list management.
 
 import { APIResponse, request } from '@playwright/test';
+import { API_ERRORS } from './helpers';
 
 // TrelloAuth interface to hold API credentials
 export interface TrelloAuth {
@@ -8,8 +9,15 @@ export interface TrelloAuth {
     token: string;
 }
 
-// Function to retrieve Trello API credentials from environment variables
+// Cache for Trello auth credentials to avoid repeated parsing
+let cachedTrelloAuth: TrelloAuth | null = null;
+
+// Function to retrieve Trello API credentials from environment variables (cached)
 export function getTrelloAuth(): TrelloAuth {
+    if (cachedTrelloAuth) {
+        return cachedTrelloAuth;
+    }
+
     const key = process.env.TRELLO_API_KEY;
     const token = process.env.TRELLO_API_TOKEN;
 
@@ -17,7 +25,8 @@ export function getTrelloAuth(): TrelloAuth {
         throw new Error('Trello API credentials (TRELLO_API_KEY/TRELLO_API_TOKEN) are missing');
     }
 
-    return { key, token };
+    cachedTrelloAuth = { key, token };
+    return cachedTrelloAuth;
 }
 
 // Function to get the base URL for Trello API from environment variables
@@ -43,7 +52,7 @@ export async function getListsOnABoard(boardId: string): Promise<string[]> {
         const getUrl = `boards/${boardId}/lists?key=${trelloAuth.key}&token=${trelloAuth.token}`;
         const response = await apiRequestContext.get(getUrl);
         if (response.status() !== 200) {
-            throw new Error(`Expected 200 success status when retrieving lists but got ${response.status()}`);
+            throw new Error(API_ERRORS.EXPECTED_200_STATUS(response.status()));
         }
         const jsonData = await response.json();
         const listIds = jsonData.map((list: any) => list.id).filter(Boolean); // Extract and filter valid list IDs
@@ -55,6 +64,7 @@ export async function getListsOnABoard(boardId: string): Promise<string[]> {
 
 /**
  * Delete all Trello boards for the authenticated user.
+ * Boards are deleted in parallel for better performance.
  * WARNING: This is a destructive operation that deletes ALL boards. Not only those created during tests.
  */
 export async function deleteAllBoards(): Promise<void> {
@@ -67,13 +77,17 @@ export async function deleteAllBoards(): Promise<void> {
         const membersResponse = await apiRequestContext.get(getUrl);
         const json = await membersResponse.json();
         const shortLinks = json.map((board: any) => board.shortLink).filter(Boolean); // Extracts the shortLink for each board and filters out invalid ones.
-        for (const shortLink of shortLinks) {
+
+        // Delete all boards in parallel
+        const deletePromises = shortLinks.map(async (shortLink: string) => {
             const deleteUrl = `boards/${shortLink}?key=${trelloAuth.key}&token=${trelloAuth.token}`;
             const deleteResponse: APIResponse = await apiRequestContext.delete(deleteUrl);
             if (deleteResponse.status() !== 200) {
-                throw new Error(`Expected 200 success status when deleting board ${shortLink} but got ${deleteResponse.status()}`);
+                throw new Error(API_ERRORS.EXPECTED_200_STATUS(deleteResponse.status()));
             }
-        }
+        });
+
+        await Promise.all(deletePromises);
     } finally {
         await apiRequestContext.dispose();
     }
