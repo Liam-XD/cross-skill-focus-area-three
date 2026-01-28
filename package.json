@@ -6,7 +6,8 @@
     "test:smoke": "npx cucumber-js --tags '@smoke'",
     "test:cucumber": "cucumber-js --require-module ts-node/register --require features/steps/**/*.ts features --format json:reports/cucumber-report.json",
     "report:cucumber": "node reports/generate-cucumber-report.js",
-    "dryrun": "cucumber-js features/ --dry-run --config cucumber.js"
+    "dryrun": "cucumber-js features/ --dry-run --config cucumber.js",
+    "lint": "npx eslint --ext .ts ."
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.5.0",
@@ -15,7 +16,10 @@
     "playwright-cucumber-steps": "^0.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.0.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "eslint": "^8.44.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0"
   },
   "dependencies": {
   }

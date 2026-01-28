@@ -161,6 +161,16 @@ This allows us to:
 - Ensure that all scenarios are properly linked to their corresponding step definitions.
 - Validate the overall structure of the test suite before executing time-consuming tests.
 
+### ESLinting
+
+To check the code for linting errors and ensure it adheres to coding standards, you can run the following command:
+
+```bash
+npm run lint
+```
+
+This helps identify unused variables, unreachable code, and other potential issues in the TypeScript files.
+
 ## Reporters
 
 By default, the test results are displayed in the terminal. However, I have also configured an HTML reporter for better visualization of test results.
@@ -212,11 +222,15 @@ The support files are located in the [features/support/](features/support/) dire
 
 ## Future Enhancements
 
-1. **Parallel Test Execution**:
-   I would like the tests to run in parallel to reduce overall execution time.
-   This is possibel, as per the parallel option in the `cucumber.js` file, however, I have encountered issues with rate limiting from the Trello API when running the afterAll hook to clean up created boards.
+1. **Response body validation**:
+   Currently, the tests primarily focus on status code validation.
+   A future enhancement could include validating the response body to ensure that the data returned from the API matches expected data types.
 
-2. **Destructive Cleanup**:
+2. **Parallel Test Execution**:
+   I would like the tests to run in parallel to reduce overall execution time.
+   This is possible, as per the parallel option in the `cucumber.js` file, however, I have encountered issues with rate limiting from the Trello API when running the afterAll hook to clean up created boards.
+
+3. **Destructive Cleanup**:
    The current cleanup step deletes all Trello boards for the authenticated user, which may not be desirable in all cases. A more targeted cleanup approach could be implemented to only delete boards created during the test runs.
 
 ## Extending the Tests

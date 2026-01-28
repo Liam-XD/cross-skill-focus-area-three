@@ -2,7 +2,6 @@
 
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { TrelloAuth } from '../trelloClient';
-import { API_ERRORS } from '../helpers';
 
 export abstract class TrelloApiPage {
     protected apiRequestContext: APIRequestContext;
@@ -13,7 +12,7 @@ export abstract class TrelloApiPage {
         this.trelloAuth = trelloAuth;
     }
 
-    async assertSuccess(response: APIResponse, expectedStatus: number = 200): Promise<void> {
+    async assertSuccess(response: APIResponse, expectedStatus = 200): Promise<void> {
         if (response.status() !== expectedStatus) {
             let bodyText = '';
             try {
@@ -21,7 +20,7 @@ export abstract class TrelloApiPage {
             } catch (error) {
                 bodyText = '[unavailable]';
             }
-            const statusError = expectedStatus === 200 ? API_ERRORS.EXPECTED_200_STATUS(response.status()) : `Expected ${expectedStatus} success status but got ${response.status()}`;
+            const statusError = `Expected ${expectedStatus} success status but got ${response.status()}`;
             throw new Error(`${statusError}\nResponse body: ${bodyText}`);
         }
     }

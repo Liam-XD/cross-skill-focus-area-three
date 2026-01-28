@@ -39,7 +39,7 @@ When('I send a request to update the card\'s name', async function () {
     const newCardName = "Updated Card Name";
     const cardId = assertDefined(this.cardId, ERRORS.CARD_ID_UNAVAILABLE);
     const listId = assertDefined(this.listId, ERRORS.LIST_ID_UNAVAILABLE);
-    this.response = await this.cardPage.updateCardName(cardId, newCardName, listId, "Updated description");
+    this.response = await this.cardPage.updateCard(cardId, newCardName, listId, "Updated description");
 });
 
 Then('the response should reflect the updated card name', async function () {

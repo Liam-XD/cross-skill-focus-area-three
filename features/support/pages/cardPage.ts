@@ -53,7 +53,7 @@ export class TrelloCardPage extends TrelloApiPage {
         if (!jsonData.id) {
             throw new Error('Response from card creation does not contain id');
         }
-        const cardId: string = jsonData.id;
+        const cardId = jsonData.id;
         this.ensureValidCardId(cardId);
         return cardId;
     }
@@ -78,7 +78,7 @@ export class TrelloCardPage extends TrelloApiPage {
         }
     }
 
-    async updateCardName(cardId: string, newCardName: string, listId: string, description: string = 'Updated description'): Promise<APIResponse> {
+    async updateCard(cardId: string, newCardName: string, listId: string, description = 'Updated description'): Promise<APIResponse> {
         this.ensureValidCardId(cardId);
         const putUrl = this.buildUrl(`cards/${cardId}`);
         const response = await this.apiRequestContext.put(putUrl, {
