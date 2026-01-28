@@ -1,7 +1,9 @@
 // This is the Trello API Page Objects base class. It provides common functionality for Trello API interactions.
 
+import 'dotenv/config';
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { TrelloAuth } from '../trelloClient';
+import { API_ERRORS } from '../helpers';
 
 export abstract class TrelloApiPage {
     protected apiRequestContext: APIRequestContext;
@@ -9,7 +11,8 @@ export abstract class TrelloApiPage {
 
     protected constructor(apiRequestContext: APIRequestContext, trelloAuth: TrelloAuth) {
         this.apiRequestContext = apiRequestContext;
-        this.trelloAuth = trelloAuth;
+        // Create a shallow copy to avoid mutating the shared cached object. Stops calling setInvalidApiKey from affecting setup.
+        this.trelloAuth = { ...trelloAuth };
     }
 
     async assertSuccess(response: APIResponse, expectedStatus = 200): Promise<void> {
@@ -20,17 +23,21 @@ export abstract class TrelloApiPage {
             } catch (error) {
                 bodyText = '[unavailable]';
             }
-            const statusError = `Expected ${expectedStatus} success status but got ${response.status()}`;
+            const statusError = API_ERRORS.EXPECTED_STATUS(expectedStatus, response.status());
             throw new Error(`${statusError}\nResponse body: ${bodyText}`);
         }
     }
 
-    protected buildUrl(path: string, params: Record<string, string | undefined> = {}): string {
-        const allParams = {
-            key: this.trelloAuth.key,
-            token: this.trelloAuth.token,
-            ...params,
-        };
-        return `${path}?${new URLSearchParams(allParams).toString()}`;
+    // Helper to build Trello API URLs with auth and parameters
+    protected buildUrl(path: string, params: Record<string, string | undefined> = {}): string { //Key must be string, value can be string or undefined
+        const query = new URLSearchParams();
+        query.set('key', this.trelloAuth.key);
+        query.set('token', this.trelloAuth.token);
+
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined) query.append(key, value);
+        });
+
+        return `${path}?${query.toString()}`;
     }
 }

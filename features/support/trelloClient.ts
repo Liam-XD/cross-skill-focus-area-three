@@ -1,5 +1,6 @@
 // This file contains helper functions to interact with the Trello API for board and list management.
 
+import 'dotenv/config';
 import { APIResponse, request } from '@playwright/test';
 import { API_ERRORS } from './helpers';
 

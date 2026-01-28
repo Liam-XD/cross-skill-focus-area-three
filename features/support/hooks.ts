@@ -18,7 +18,7 @@ Before<TestWorld>({ tags: '@board or @card' }, async function () {
     this.apiRequestContext = await request.newContext({ baseURL }); // Create shared context
 });
 
-Before<TestWorld>({ tags: '@board and not @board-create' }, async function () {
+Before<TestWorld>({ tags: '@board' }, async function () {
     // Create a Trello board before tagged scenarios using the TrelloBoardPage
     // Skipped for @board-create scenarios that create their own board
     const boardPage = this.boardPage;
@@ -49,7 +49,7 @@ Before<TestWorld>({ tags: '@card' }, async function () {
     this.listId = lists[0]; // Use the first list for card operations
 });
 
-Before<TestWorld>({ tags: '@card and not @card-create' }, async function () {
+Before<TestWorld>({ tags: '@card' }, async function () {
     // Create a card on the first list so scenarios have a valid card ID available
     // Skipped for @card-create scenarios that create their own card
     const listId = assertDefined(this.listId, ERRORS.LIST_ID_UNAVAILABLE);

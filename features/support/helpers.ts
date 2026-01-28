@@ -41,6 +41,7 @@ export const ERRORS = {
 
 // Centralized API error messages
 export const API_ERRORS = {
+    EXPECTED_STATUS: (expected: number, actual: number) => `Expected ${expected} success status but got ${actual}`,
     EXPECTED_200_STATUS: (actual: number) => `Expected 200 success status but got ${actual}`,
     EXPECTED_404_STATUS: (actual: number) => `Expected 404 status for not found resource but got ${actual}`,
     UNAUTHORIZED: (actual: number) => `Expected 401 or 403 status for unauthorized request but got ${actual}`,
