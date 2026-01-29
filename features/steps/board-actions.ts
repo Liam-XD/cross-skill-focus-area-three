@@ -68,4 +68,6 @@ When('I send a request to delete the board', async function () {
 Then('the board should no longer exist when I attempt to retrieve it', async function () {
     const boardId = assertDefined(this.boardId, ERRORS.BOARD_ID_UNAVAILABLE);
     await this.boardPage.assertBoardDeleted(boardId);
+    // Clear boardId so After hook doesn't try to delete an already-deleted board
+    this.boardId = undefined;
 });

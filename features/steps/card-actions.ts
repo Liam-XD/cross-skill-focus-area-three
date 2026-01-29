@@ -3,6 +3,26 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import 'dotenv/config';
 import { assertDefined, ERRORS } from '../support/helpers';
+import { getListsOnABoard } from '../support/trelloClient';
+
+// --- Setup for card creation scenarios ---
+Given('I have a valid board ID and list ID', async function () {
+    if (this.boardId && this.listId) {
+        // IDs already set up by hooks
+        return;
+    }
+    const boardPage = this.boardPage;
+    const response = await boardPage.createBoard();
+    const boardId = await boardPage.extractBoardId(response);
+
+    const lists = await getListsOnABoard(boardId);
+
+    const validBoardId = assertDefined(boardId, ERRORS.BOARD_ID_UNAVAILABLE);
+    const listId = assertDefined(lists[0], ERRORS.LIST_ID_UNAVAILABLE);
+
+    this.boardId = validBoardId;
+    this.listId = listId;
+});
 
 // --- Create Card & Assert ID ---
 When('I send a request to create a card', async function () {
@@ -56,4 +76,7 @@ When('I send a request to delete the card', async function () {
 Then('the card should no longer exist when I attempt to retrieve it', async function () {
     const cardId = assertDefined(this.cardId, ERRORS.CARD_ID_UNAVAILABLE);
     await this.cardPage.assertCardDeleted(cardId);
+
+    // Clear cardId so After hook doesn't try to delete an already-deleted card
+    this.cardId = undefined;
 });

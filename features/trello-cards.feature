@@ -1,8 +1,9 @@
 Feature: Trello Cards API Endpoint
 
-  @card @smoke
+  @card @card-create @smoke
   Scenario: Create a new card via API
     Given I am authenticated with the Trello API
+    And I have a valid board ID and list ID
     When I send a request to create a card
     Then the API should return a success status
     And the response should contain a valid card ID
@@ -21,7 +22,7 @@ Feature: Trello Cards API Endpoint
     Then the API should return a success status
     And the response should reflect the updated card name
 
-  @card
+  @card @card-destructive
   Scenario: Delete a card via API
     Given I have a valid card ID
     When I send a request to delete the card

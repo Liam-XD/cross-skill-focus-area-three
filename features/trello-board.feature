@@ -1,6 +1,6 @@
 Feature: Trello Board API Endpoint
 
-  @board @smoke
+  @board @board-create @smoke
   Scenario: Create a new board via API
     Given I am authenticated with the Trello API
     When I send a request to create a board
@@ -21,14 +21,14 @@ Feature: Trello Board API Endpoint
     Then the API should return a success status
     And the response should reflect the updated board name
 
-  @board
+  @board @board-destructive
   Scenario: Delete a board via API
     Given I have a valid board ID
     When I send a request to delete the board
     Then the API should return a success status
     And the board should no longer exist when I attempt to retrieve it
 
-  @board @negative
+  @board @board-destructive @negative
   Scenario: Update a deleted board via API
     Given I have a valid board ID
     And I send a request to delete the board

@@ -93,7 +93,21 @@ export class TrelloBoardPage extends TrelloApiPage {
 
     async deleteBoard(boardId: string): Promise<APIResponse> {
         const deleteUrl = this.buildUrl(`boards/${boardId}`);
-        return this.apiRequestContext.delete(deleteUrl);
+        const response = await this.apiRequestContext.delete(deleteUrl);
+
+        // Log unexpected errors before asserting
+        if (response.status() !== 200) {
+            let responseBody = '[Fallback body as unable to read from response]';
+            try {
+                responseBody = await response.text();
+            } catch {
+                // Ignore if body couldn't be read as we have a fallback value set
+            }
+            console.error(`Failed to delete board ${boardId}. Status: ${response.status()}. Response body: ${responseBody}`);
+        }
+
+        await this.assertSuccess(response, 200);
+        return response;
     }
 
     async assertBoardDeleted(boardId: string): Promise<void> {
