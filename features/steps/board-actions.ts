@@ -71,3 +71,8 @@ Then('the board should no longer exist when I attempt to retrieve it', async fun
     // Clear boardId so After hook doesn't try to delete an already-deleted board
     this.boardId = undefined;
 });
+
+// Utility step to explicitly mark the board as deleted without performing an API GET
+Then('I mark the board as deleted', async function () {
+    this.boardId = undefined;
+});

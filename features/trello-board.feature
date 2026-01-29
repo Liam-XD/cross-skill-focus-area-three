@@ -35,6 +35,7 @@ Feature: Trello Board API Endpoint
     When I send a request to update the deleted board's name
     Then the API should return a 404 status
     And the response should contain a message "Board not found"
+    And I mark the board as deleted
 
   @board @smoke @negative
   Scenario: Create a board with invalid API key
