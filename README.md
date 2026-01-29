@@ -69,8 +69,14 @@ _Note: Playwright requires additional browser binaries to be installed for UI te
 ### 3. Quick Start
 
 ```bash
-git clone https://github.com/Liam-XD/cross-skill-focus-area-three.git && cd cross-skill-focus-area-three && npm install && npx playwright install
+git clone https://github.com/Liam-XD/cross-skill-focus-area-three.git && cd cross-skill-focus-area-three && npm install && npx playwright install && code .
 ```
+
+_Note: for the last part of the command (`code .`) to work, you need to have Visual Studio Code installed and the `code` command available in your system PATH._
+
+_Open VS Code → Press Cmd+Shift+P → run Shell Command: Install 'code' command in PATH._
+_Close and reopen your terminal._
+_Verify: code --version_
 
 ### 4. Environment Variables
 

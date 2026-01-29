@@ -63,12 +63,23 @@ Before<TestWorld>({ tags: '@card' }, async function () {
 });
 
 After<TestWorld>({ tags: '@board or @card' }, async function () {
+    // Delete the board created for this scenario
+    if (this.boardId) {
+        try {
+            await this.boardPage.deleteBoard(this.boardId);
+        } catch (error) {
+            console.error(`Failed to delete board ${this.boardId}:`, error);
+        }
+    }
+});
+
+After<TestWorld>({ tags: '@board or @card' }, async function () {
     // Dispose of the shared APIRequestContext after tagged scenarios
     await this.apiRequestContext?.dispose();
     this.apiRequestContext = undefined;
 });
 
 AfterAll({ timeout: 10000 }, async function () {
-    // Clean up created boards after all tests have run
+    // Clean up any remaining boards as a safety net
     await deleteAllBoards();
 });
