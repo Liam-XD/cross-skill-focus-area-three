@@ -71,9 +71,7 @@ After<TestWorld>({ tags: '@board or @card' }, async function () {
             console.error(`Failed to delete board ${this.boardId}:`, error);
         }
     }
-});
-
-After<TestWorld>({ tags: '@board or @card' }, async function () {
+    
     // Dispose of the shared APIRequestContext after tagged scenarios
     await this.apiRequestContext?.dispose();
     this.apiRequestContext = undefined;
