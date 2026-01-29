@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "End-to-end testing project using Playwright, TypeScript & Cucumber.",
   "scripts": {
-    "test:smoke": "npx cucumber-js --tags '@smoke'",
-    "test:cucumber": "cucumber-js --require-module ts-node/register --require features/steps/**/*.ts features --format json:reports/cucumber-report.json",
+    "test:smoke": "npx cucumber-js --config cucumber.js --tags '@smoke'",
+    "test:cucumber": "npx cucumber-js --config cucumber.js",
     "report:cucumber": "node reports/generate-cucumber-report.js",
     "dryrun": "cucumber-js features/ --dry-run --config cucumber.js",
     "lint": "npx eslint --ext .ts ."

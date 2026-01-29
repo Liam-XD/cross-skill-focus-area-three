@@ -45,8 +45,8 @@ Before<TestWorld>({ tags: '@board and not @board-create and not @board-destructi
     this.boardName = assertDefined(sharedBoardName, 'Shared board name not captured');
 });
 
-// Setup board: create new board for create/destructive scenarios. Will only run for scenarios tagged with @board and either @board-create or @board-destructive
-Before<TestWorld>({ tags: '@board and (@board-create or @board-destructive)' }, async function () {
+// Setup board: create new board for destructive scenarios only. Do NOT pre-create for @board-create
+Before<TestWorld>({ tags: '@board and @board-destructive' }, async function () {
     const response = await this.boardPage.createBoard();
     const json = await response.json();
     this.boardId = await this.boardPage.extractBoardId(response);
