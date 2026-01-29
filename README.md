@@ -146,6 +146,14 @@ You can also run scenarios based on tags. For example, to run all scenarios tagg
 npm run test:smoke
 ```
 
+This will work because I have defined a script in the `package.json` file for the `@smoke` tag.s
+
+or
+
+```bash
+npx cucumber-js --tags "@smoke"
+```
+
 This will execute all scenarios that have the `@smoke` tag in the feature files.
 
 ### Skipping Tests
