@@ -240,12 +240,9 @@ The support files are located in the [features/support/](features/support/) dire
    Currently, the tests primarily focus on status code validation.
    A future enhancement could include validating the response body to ensure that the data returned from the API matches expected data types.
 
-2. **Parallel Test Execution**:
-   I would like the tests to run in parallel to reduce overall execution time.
-   This is possible, as per the parallel option in the `cucumber.js` file, however, I have encountered issues with rate limiting from the Trello API when running the afterAll hook to clean up created boards.
-
-3. **Destructive Cleanup**:
-   The current cleanup step deletes all Trello boards for the authenticated user, which may not be desirable in all cases. A more targeted cleanup approach could be implemented to only delete boards created during the test runs.
+2. **UI Testing**:
+   While this project focuses on API testing, it could be extended to include UI testing using Playwright's browser automation capabilities.
+   This would involve creating tests that interact with the Trello web interface to verify that changes made via the API are reflected in the UI.
 
 ## Extending the Tests
 

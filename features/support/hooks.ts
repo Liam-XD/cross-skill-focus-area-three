@@ -45,7 +45,7 @@ Before<TestWorld>({ tags: '@board and not @board-create and not @board-destructi
     this.boardName = assertDefined(sharedBoardName, 'Shared board name not captured');
 });
 
-// Setup board: create new board for destructive scenarios only. Do NOT pre-create for @board-create
+// Setup board: create new board for destructive scenarios only. Will only run for scenarios tagged with @board and @board-destructive
 Before<TestWorld>({ tags: '@board and @board-destructive' }, async function () {
     const response = await this.boardPage.createBoard();
     const json = await response.json();
@@ -53,7 +53,7 @@ Before<TestWorld>({ tags: '@board and @board-destructive' }, async function () {
     this.boardName = json.name;
 });
 
-// Setup board and list for card scenarios. Will only run for @card scenarios
+// Setup board and list for card scenarios. Will run for scenarios tagged with @card only
 Before<TestWorld>({ tags: '@card and not @card-create and not @card-destructive' }, async function () {
     this.boardId = assertDefined(sharedBoardId, 'Shared board not created');
     this.listId = assertDefined(sharedListId, 'Shared list not available');
@@ -63,19 +63,12 @@ Before<TestWorld>({ tags: '@card and not @card-create and not @card-destructive'
     this.cardId = assertDefined(json.id, 'Card creation response missing id');
 });
 
-// Setup board and list for create/destructive card scenarios. Will only run for scenarios tagged with @card and either @card-create or @card-destructive
-Before<TestWorld>({ tags: '@card and (@card-create or @card-destructive)' }, async function () {
-    const response = await this.boardPage.createBoard();
-    const json = await response.json();
-    this.boardId = await this.boardPage.extractBoardId(response);
-    const lists = await getListsOnABoard(this.boardId);
-    this.listId = assertDefined(lists[0], 'No lists found on new board');
-});
-
 // Create card for destructive card scenarios. Will only run for scenarios tagged with @card and @card-destructive
 Before<TestWorld>({ tags: '@card and @card-destructive' }, async function () {
-    const listId = assertDefined(this.listId, ERRORS.LIST_ID_UNAVAILABLE);
-    const response = await this.cardPage.createCard(listId, 'Destructive_Card');
+    this.boardId = assertDefined(sharedBoardId, 'Shared board not created');
+    const lists = await getListsOnABoard(this.boardId);
+    this.listId = assertDefined(lists[0], 'No lists found on board available');
+    const response = await this.cardPage.createCard(this.listId, 'Destructive_Card');
     const json = await response.json();
     this.cardId = assertDefined(json.id, 'Card creation response missing id');
 });
@@ -106,9 +99,8 @@ AfterAll({ timeout: 10000 }, async function () {
         try {
             const boardPage = await TrelloBoardPage.create();
             await boardPage.deleteBoard(sharedBoardId);
-            console.log(`Successfully deleted shared board: ${sharedBoardId}`);
         } catch (error) {
-            console.error(`Failed to delete shared board ${sharedBoardId}:`, error);
+            console.warn(`Failed to delete shared board ${sharedBoardId}:`, error);
         }
     }
 

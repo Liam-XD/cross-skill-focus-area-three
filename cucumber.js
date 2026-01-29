@@ -7,6 +7,6 @@ module.exports = {
     format: ['pretty', 'html:reports/cucumber-report.html', 'json:reports/cucumber-report.json'],
     formatOptions: { snippetInterface: 'async-await' },
     tags: 'not @skip', // Exclude scenarios tagged with @skip
-    parallel: 1
+    parallel: 3, // Run scenarios in parallel with set number of workers
   }
 };
