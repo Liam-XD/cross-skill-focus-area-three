@@ -82,17 +82,22 @@ Before<TestWorld>({ tags: '@card and @card-destructive' }, async function () {
 
 // Cleanup: delete non-shared boards only. Will only run for scenarios tagged with @board or @card
 After<TestWorld>({ tags: '@board or @card' }, async function () {
-    if (this.boardId && this.boardId !== sharedBoardId) {
-        // Check if board still exists before attempting to delete
-        const boardResponse = await this.boardPage.getBoard(this.boardId);
-        if (boardResponse.status() === 200) {
-            // Board exists, delete it
-            await this.boardPage.deleteBoard(this.boardId);
+    try {
+        if (this.boardId && this.boardId !== sharedBoardId) {
+            try {
+                await this.boardPage.deleteBoard(this.boardId);
+            } catch (error) {
+                // deleteBoard function logs errors; continue cleanup even if deletion fails
+            }
         }
+    } finally {
+        try {
+            await this.apiRequestContext?.dispose();
+        } catch (error) {
+            console.warn('Failed to dispose API context:', error);
+        }
+        this.apiRequestContext = undefined;
     }
-
-    await this.apiRequestContext?.dispose();
-    this.apiRequestContext = undefined;
 });
 
 // Final cleanup - delete the shared board
@@ -101,10 +106,12 @@ AfterAll({ timeout: 10000 }, async function () {
         try {
             const boardPage = await TrelloBoardPage.create();
             await boardPage.deleteBoard(sharedBoardId);
+            console.log(`Successfully deleted shared board: ${sharedBoardId}`);
         } catch (error) {
             console.error(`Failed to delete shared board ${sharedBoardId}:`, error);
         }
     }
+
     sharedBoardId = undefined;
     sharedBoardName = undefined;
     sharedListId = undefined;

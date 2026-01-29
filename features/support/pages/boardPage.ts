@@ -103,7 +103,7 @@ export class TrelloBoardPage extends TrelloApiPage {
             } catch {
                 // Ignore if body couldn't be read as we have a fallback value set
             }
-            console.error(`Failed to delete board ${boardId}. Status: ${response.status()}. Response body: ${responseBody}`);
+            console.error(`Failed to delete board ${boardId}.\nStatus: ${response.status()}.\nResponse body: ${responseBody}`);
         }
 
         await this.assertSuccess(response, 200);
